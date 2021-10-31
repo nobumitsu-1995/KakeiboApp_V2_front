@@ -6,16 +6,27 @@ import { Provider } from 'react-redux';
 import createStore from './reducks/store/store';
 import * as History from 'history';
 import { ConnectedRouter } from 'connected-react-router';
+import { Auth0Provider } from '@auth0/auth0-react';
 
 const history = History.createBrowserHistory();
-export const store = createStore(history);
+const store = createStore(history);
+
+console.log(history)
 
 ReactDOM.render(
-  <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <App />
-    </ConnectedRouter>
-  </Provider>,
+  <Auth0Provider
+    domain={"dev-i4w4aoob.us.auth0.com"}
+    clientId={"LP4zcx79ABl493SMuSwS8IaVVX4DWzPg"}
+    redirectUri={window.location.origin}
+    useRefreshTokens={true}
+  >
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
+        <App />
+      </ConnectedRouter>
+    </Provider>
+  </Auth0Provider>
+  ,
   document.getElementById('root')
 );
 
