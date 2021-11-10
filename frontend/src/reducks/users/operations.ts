@@ -8,7 +8,8 @@ export const signIn = (user: User | undefined) => {
                 isSignedIn: true,
                 icon: user?.picture,
                 uid: user?.sub,
-                username: user?.nickname
+                username: user?.nickname,
+                email: user?.email
             }))
         )
     }

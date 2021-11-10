@@ -11,9 +11,9 @@ const ItemMenu: React.FC<Props> = (props) => {
 
     return (
         <>
-            {props.edit ??
+            {props.edit &&
                 <Button
-                    children={"編集"}
+                    children={"edit"}
                     color="inherit"
                     size="small"
                     variant="text"
@@ -21,9 +21,9 @@ const ItemMenu: React.FC<Props> = (props) => {
                     startIcon={<EditIcon color="info"/>}
                 />
             }
-            {props.delete ??
+            {props.delete &&
                 <Button
-                    children={"削除"}
+                    children={"delete"}
                     color="inherit"
                     size="small"
                     variant="text"

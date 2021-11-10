@@ -3,6 +3,7 @@ export type userState = {
     icon?: string
     uid?: string
     username?: string
+    email?: string
 };
 
 export type userAction = {

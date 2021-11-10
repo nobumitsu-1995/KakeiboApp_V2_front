@@ -16,3 +16,8 @@ export const getUserIcon = createSelector(
     [usersSelector],
     state => state.icon
 )
+
+export const getUserEmail = createSelector(
+    [usersSelector],
+    state => state.email
+)

@@ -1,9 +1,9 @@
-import { AccountBoxOutlined } from '@mui/icons-material';
 import React from 'react';
 import './App.css';
-import Card from './components/molecules/Card';
-import ItemMenu from './components/molecules/ItemMenu';
 import Header from './components/organisms/Header';
+import CategoriesAndPaymentMethods from './components/templates/CategoriesAndPaymentMethods';
+import MoneyInfo from './components/templates/MoneyInfo';
+import UserInfo from './components/templates/UserInfo';
 
 function App() {
 
@@ -11,16 +11,9 @@ function App() {
     <div className="App">
       <Header/>
       <br/><br/><br/><br/><br/><br/>
-      <Card
-        color="#1877D2"
-        title={"ユーザー情報"}
-        action={<ItemMenu/>}
-      >
-        <AccountBoxOutlined/>
-        <>
-
-        </>
-      </Card>
+      <UserInfo/>
+      <MoneyInfo/>
+      <CategoriesAndPaymentMethods/>
     </div>
   );
 }
