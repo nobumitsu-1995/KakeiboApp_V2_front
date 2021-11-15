@@ -42,7 +42,6 @@ const EditMoneyInfo = () => {
                 variant="contained"
                 size="medium"
                 fullWidth={true}
-                onClick={() => {console.log("qwerty")}}
             >
                 Update
             </Button>

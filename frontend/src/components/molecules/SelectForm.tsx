@@ -5,7 +5,8 @@ import {InputLabel, MenuItem, FormControl, Select} from "@material-ui/core";
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         formControl: {
-        margin: theme.spacing(1),
+        marginTop: 16,
+        marginBottom: 8,
         minWidth: 120
         },
     })
@@ -14,8 +15,8 @@ const useStyles = makeStyles((theme: Theme) =>
 type Props = {
     label: string;
     name: string;
-    value?: number | string;
-    datas: {value: number | string, name: string}[];
+    value?: number | string | boolean;
+    datas: {value: number | string | boolean, name: string}[];
     disabled: "disabled" | null;
     onChange?: any
 };
@@ -24,11 +25,11 @@ const SelectForm: FC<Props> = (props) => {
     const classes = useStyles();
     
     return (
-        <FormControl className={classes.formControl} size="small" {...props.disabled} >
+        <FormControl className={classes.formControl} size="medium" fullWidth {...props.disabled} >
             <InputLabel>{props.label}</InputLabel>
             <Select　value={props.value} name={props.name} onChange={props.onChange}>
-            {props.datas.map((data: {value: number | string, name: string}) => (
-                <MenuItem key={data.value} value={data.value}>
+            {props.datas.map((data: {value: number | string | boolean, name: string}) => (
+                <MenuItem value={`${data.value}`}>
                 {data.name}
                 </MenuItem>
             ))}

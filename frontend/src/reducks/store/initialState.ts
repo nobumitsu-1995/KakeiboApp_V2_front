@@ -21,3 +21,12 @@ export const initialCategoryState = {
     created_at: "",
     update_at: ""
 }
+
+export const initialPaymentMethodState = {
+    id: 0,
+    name: "",
+    income: false,
+    user_id: 0,
+    created_at: "",
+    update_at: ""
+}

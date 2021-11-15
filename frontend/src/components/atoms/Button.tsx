@@ -17,6 +17,7 @@ type Props = {
     fullWidth?: boolean;
     onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
     startIcon?: React.ReactNode;
+    endIcon?: React.ReactNode;
 }
 
 const Button: React.FC<Props> = (props) => {
@@ -29,6 +30,7 @@ const Button: React.FC<Props> = (props) => {
             onClick={props.onClick}
             fullWidth={props.fullWidth}
             startIcon={props.startIcon}
+            endIcon={props.endIcon}
         />
     );
 }
