@@ -6,6 +6,7 @@ import Button from "../atoms/Button";
 import { useDispatch } from "react-redux";
 import { signIn, signOut } from "../../reducks/users/operations";
 import HeaderUserMenu from "./HeaderUserMenu";
+import { push } from "connected-react-router";
 
 const Header: React.FC = () => {
     const { loginWithRedirect, isAuthenticated, user } = useAuth0();
@@ -40,7 +41,7 @@ const Header: React.FC = () => {
                             color="inherit"
                             size="large"
                             variant="text"
-                            onClick={() => {console.log("index")}}
+                            onClick={() => dispatch(push('/items'))}
                         />
                         <HeaderUserMenu/>
                     </div>

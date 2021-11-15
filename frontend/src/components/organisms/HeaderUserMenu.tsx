@@ -2,8 +2,9 @@ import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Avatar, IconButton, ListItemIcon, Menu, MenuItem } from '@material-ui/core';
 import { Logout, Settings } from '@mui/icons-material';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getUserName, getUserIcon } from "../../reducks/users/selectors";
+import { push } from 'connected-react-router';
 
 const HeaderUserMenu = () => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -18,6 +19,7 @@ const HeaderUserMenu = () => {
     const selector = useSelector(state => state);
     const username = getUserName(selector);
     const icon = getUserIcon(selector);
+    const dispatch = useDispatch();
 
     return (
         <>
@@ -45,13 +47,20 @@ const HeaderUserMenu = () => {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
             >
-                <MenuItem>
+                <MenuItem onClick={() => {
+                    handleClose()
+                    dispatch(push('/user'))
+                    
+                }}>
                     <ListItemIcon>
                         <Avatar alt={username}　src={icon}/>
                     </ListItemIcon>
                     {username}
                 </MenuItem>
-                <MenuItem divider={true} onClick={handleClose}>
+                <MenuItem divider={true} onClick={() => {
+                    handleClose()
+                    dispatch(push('/user/edit'))
+                }}>
                     <ListItemIcon>
                         <Settings fontSize="small"/>
                     </ListItemIcon>

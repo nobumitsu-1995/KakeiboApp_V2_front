@@ -1,5 +1,5 @@
+import { initialState } from '../store/initialState';
 import * as Actions from './actions';
-import initialState from '../store/initialState';
 import { userAction } from './type';
 
 export const UsersReducer = (state = initialState.users, action: userAction) => {

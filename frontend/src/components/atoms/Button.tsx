@@ -15,7 +15,7 @@ type Props = {
         'outlined' |
         'text';
     fullWidth?: boolean;
-    onClick: React.MouseEventHandler<HTMLButtonElement> | undefined;
+    onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
     startIcon?: React.ReactNode;
 }
 

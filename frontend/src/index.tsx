@@ -11,8 +11,6 @@ import { Auth0Provider } from '@auth0/auth0-react';
 const history = History.createBrowserHistory();
 const store = createStore(history);
 
-console.log(history)
-
 ReactDOM.render(
   <Auth0Provider
     domain={"dev-i4w4aoob.us.auth0.com"}
