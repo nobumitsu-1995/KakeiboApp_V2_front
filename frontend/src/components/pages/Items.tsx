@@ -3,6 +3,8 @@ import { ArrowLeft, ArrowRight } from "@mui/icons-material";
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import { useState } from "react";
 import { Button } from "../atoms";
+import ItemsCalendar from "../templates/Calendar";
+import Dashboard from "../templates/Dashboard";
 import IndexItems from "../templates/IndexItems";
 
 const items = [
@@ -89,7 +91,7 @@ const Items = () => {
                 <Button variant="contained" size="small" color="primary" onClick={nextMonth} endIcon={<ArrowRight/>}>次月</Button>
             </div>
             <TabContext value={value} >
-                <AppBar position="static">
+                <AppBar position="static" color="inherit">
                     <TabList onChange={handleChange} aria-label="simple tabs example">
                         <Tab label="月別収支一覧" value="index"/>
                         <Tab label="カレンダー" value="calender" />
@@ -101,10 +103,10 @@ const Items = () => {
                         <IndexItems items={items} />
                     </TabPanel>
                     <TabPanel value="calender">
-                        Calender
+                        <ItemsCalendar items={items} currentMonth={currentMonth}/>
                     </TabPanel>
                     <TabPanel value="dashboard">
-                        Dashboard
+                        <Dashboard items={items} currentMonth={currentMonth} />
                     </TabPanel>
                 </Paper>
             </TabContext>
