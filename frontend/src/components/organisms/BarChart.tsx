@@ -4,8 +4,8 @@ import { useLocation } from "react-router";
 import { itemState } from "../../reducks/items/type";
 
 type Props = {
-    items: itemState[],
-    currentMonth: string
+    items: itemState[];
+    currentMonth: string;
 }
 
 const BarChart: FC<Props> = (props) => {

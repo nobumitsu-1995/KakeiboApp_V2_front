@@ -7,6 +7,7 @@ import { connectRouter, routerMiddleware } from 'connected-react-router';
 import thunk from 'redux-thunk';
 import * as H from 'history';
 import { UsersReducer } from "../users/reducers";
+import { ItemsReducer } from "../items/reducers";
 
 export default function createStore(history: H.History) {
     const middleWares = [routerMiddleware(history), thunk];
@@ -14,6 +15,7 @@ export default function createStore(history: H.History) {
         combineReducers({
             router: connectRouter(history),
             users: UsersReducer,
+            items: ItemsReducer,
         }),
         applyMiddleware(
             ...middleWares

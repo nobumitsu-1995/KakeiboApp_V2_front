@@ -20,8 +20,8 @@ const useStyles = makeStyles({
 });
 
 type Props = {
-    items: itemState[],
-    currentMonth: string
+    items: itemState[];
+    currentMonth: string;
 }
 
 const Dashboard: React.FC<Props> = (props) => {

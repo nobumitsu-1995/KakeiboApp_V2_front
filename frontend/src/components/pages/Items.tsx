@@ -1,41 +1,16 @@
 import { AppBar, makeStyles, Paper, Tab } from "@material-ui/core";
 import { ArrowLeft, ArrowRight } from "@mui/icons-material";
 import { TabContext, TabList, TabPanel } from '@mui/lab';
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getItems } from "../../reducks/items/operations";
+import { initialState } from "../../reducks/store/initialState";
+import { getUserId } from "../../reducks/users/selectors";
+import { getItems as getItemsState } from "../../reducks/items/selectors"
 import { Button } from "../atoms";
 import ItemsCalendar from "../templates/Calendar";
 import Dashboard from "../templates/Dashboard";
 import IndexItems from "../templates/IndexItems";
-
-const items = [
-    {
-        id: "1234",
-        date: "12/12",
-        category: {big_category: "fixed_cost", name: "qwerty"},
-        payment_method: {name: "12345"},
-        name: "hoge",
-        price: 12345,
-        note: "qwertyuiop@["
-    },
-    {
-        id: "1234",
-        date: "12/12",
-        category: {big_category: "fixed_cost", name: "qwerty"},
-        payment_method: {name: "12345"},
-        name: "hoge",
-        price: 12345,
-        note: "qwertyuiop@["
-    },
-    {
-        id: "1234",
-        date: "12/12",
-        category: {big_category: "fixed_cost", name: "qwerty"},
-        payment_method: {name: "12345"},
-        name: "hoge",
-        price: 12345,
-        note: "qwertyuiop@["
-    },
-]
 
 const useStyles = makeStyles({
     subject: {
@@ -64,6 +39,16 @@ const Items = () => {
     const today = new Date();
     const [currentMonth, setCurrentMonth] = useState(`${today.getFullYear()}-${today.getMonth() +1}-${today.getDate()}`)
     const [value, setValue] = useState("index");
+    const [items, setItems] = useState([initialState.items])
+    const selector = useSelector(state => state);
+    const dispatch = useDispatch();
+    const uid = getUserId(selector);
+    
+    useEffect(() => {
+        dispatch(getItems(uid, currentMonth));
+        const items = getItemsState(selector);
+        setItems(items);
+    }, [currentMonth])
 
     const prevMonth = () => {
         const date = new Date(currentMonth)
@@ -80,6 +65,7 @@ const Items = () => {
     const handleChange = (event: React.ChangeEvent<{}>, newValue: string) => {
         setValue(newValue);
     };
+
 
     return (
         <>

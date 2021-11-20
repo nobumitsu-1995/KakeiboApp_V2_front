@@ -13,10 +13,9 @@ const store = createStore(history);
 
 ReactDOM.render(
   <Auth0Provider
-    domain={"dev-i4w4aoob.us.auth0.com"}
-    clientId={"LP4zcx79ABl493SMuSwS8IaVVX4DWzPg"}
+    domain="dev-i4w4aoob.us.auth0.com"
+    clientId="LP4zcx79ABl493SMuSwS8IaVVX4DWzPg"
     redirectUri={window.location.origin}
-    useRefreshTokens={true}
   >
     <Provider store={store}>
       <ConnectedRouter history={history}>

@@ -1,12 +1,15 @@
 import {Switch, Route} from "react-router"
 import { Home, Items, User } from "./components/pages";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useSelector } from "react-redux";
+import { getSignedIn } from "./reducks/users/selectors";
 
 const Router = () => {
-    const { isAuthenticated } = useAuth0();
+    const selector = useSelector(state => state);
+    const signedIn = getSignedIn(selector)
+    
     return (
         <Switch>
-            {!isAuthenticated ?
+            {!signedIn ?
                 <Route exact path="/" component={Home} />
             :
                 <>

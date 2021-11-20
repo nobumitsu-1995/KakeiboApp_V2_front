@@ -4,6 +4,40 @@ export const initialState = {
         icon: "",
         uid: "",
         username: ""
+    },
+    moneyInfos: {
+        total_assets: 0,
+        target_amount: 0,
+        deadline: "",
+        user_id: "",
+    },
+    categories: {
+        id: 0,
+        name: "",
+        user_id: "",
+        big_category: "fixed_cost",
+        created_at: "",
+        update_at: ""
+    },
+    payment_methods: {
+        id: 0,
+        name: "",
+        income: false,
+        user_id: "",
+        created_at: "",
+        update_at: ""
+    },
+    items: {
+        id: 0,
+        date: "",
+        category_id: 0,
+        name: "",
+        price: 0,
+        payment_method_id: 0,
+        note: "",
+        user_id: "",
+        category: {id: 0, name: "", big_category: ""},
+        payment_method: {id: 0, name: "", income: false}
     }
 }
 

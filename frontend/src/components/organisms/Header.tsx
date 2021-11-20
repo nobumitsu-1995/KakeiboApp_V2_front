@@ -4,7 +4,7 @@ import { AppBar, Typography } from "@material-ui/core";
 import { Toolbar } from "@material-ui/core";
 import Button from "../atoms/Button";
 import { useDispatch } from "react-redux";
-import { signIn, signOut } from "../../reducks/users/operations";
+import { signIn } from "../../reducks/users/operations";
 import HeaderUserMenu from "./HeaderUserMenu";
 import { push } from "connected-react-router";
 
@@ -15,9 +15,7 @@ const Header: React.FC = () => {
     useEffect(() => {
         if (isAuthenticated) {
             dispatch(signIn(user))
-        } else {
-            dispatch(signOut())
-        }
+        } 
     }, [isAuthenticated, user, dispatch])
 
     return (

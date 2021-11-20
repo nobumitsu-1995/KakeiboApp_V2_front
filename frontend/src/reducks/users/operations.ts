@@ -11,7 +11,6 @@ export const signIn = (user: User | undefined) => {
             username: user?.nickname,
             email: user?.email
         }));
-
         dispatch(push('/items'))
     }
 }
