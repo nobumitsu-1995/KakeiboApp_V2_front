@@ -2,15 +2,15 @@ import { AppBar, makeStyles, Paper, Tab } from "@material-ui/core";
 import { ArrowLeft, ArrowRight } from "@mui/icons-material";
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getItems } from "../../reducks/items/operations";
+import { useSelector } from "react-redux";
+import { itemsfilter } from "../../reducks/items/operations";
 import { initialState } from "../../reducks/store/initialState";
-import { getUserId } from "../../reducks/users/selectors";
 import { getItems as getItemsState } from "../../reducks/items/selectors"
 import { Button } from "../atoms";
 import ItemsCalendar from "../templates/Calendar";
 import Dashboard from "../templates/Dashboard";
 import IndexItems from "../templates/IndexItems";
+import { itemState } from "../../reducks/items/type";
 
 const useStyles = makeStyles({
     subject: {
@@ -39,17 +39,14 @@ const Items = () => {
     const today = new Date();
     const [currentMonth, setCurrentMonth] = useState(`${today.getFullYear()}-${today.getMonth() +1}-${today.getDate()}`)
     const [value, setValue] = useState("index");
-    const [items, setItems] = useState([initialState.items])
+    const [items, setItems] = useState<itemState[]>([initialState.items])
     const selector = useSelector(state => state);
-    const dispatch = useDispatch();
-    const uid = getUserId(selector);
+    const allItems = getItemsState(selector);
     
     useEffect(() => {
-        dispatch(getItems(uid, currentMonth));
-        const items = getItemsState(selector);
-        setItems(items);
-    }, [currentMonth])
-
+        setItems(itemsfilter(allItems, currentMonth))
+    }, [allItems, currentMonth])
+    
     const prevMonth = () => {
         const date = new Date(currentMonth)
         date.setMonth(date.getMonth() - 1)
@@ -65,7 +62,6 @@ const Items = () => {
     const handleChange = (event: React.ChangeEvent<{}>, newValue: string) => {
         setValue(newValue);
     };
-
 
     return (
         <>

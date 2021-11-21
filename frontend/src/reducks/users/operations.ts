@@ -1,6 +1,7 @@
 import { signInAction, signOutAction } from "./actions";
 import { User } from "@auth0/auth0-react";
 import { push } from "connected-react-router";
+import { getItems } from "../items/operations";
 
 export const signIn = (user: User | undefined) => {
     return async (dispatch: any) => {
@@ -11,6 +12,7 @@ export const signIn = (user: User | undefined) => {
             username: user?.nickname,
             email: user?.email
         }));
+        dispatch(getItems(user?.sub))
         dispatch(push('/items'))
     }
 }

@@ -49,22 +49,6 @@ const List: React.FC<Props> = (props) => {
                     />
                     <ItemMenu edit={() => {console.log("edit")}} delete={() => {console.log("delete")}}/>
                 </ListItem>
-                <ListItem button className={classes.listItem}>
-                    ・<ListItemText
-                        classes={{secondary: classes.secondary}}
-                        primary="qwerty"
-                        secondary="qwerty"
-                    />
-                    <ItemMenu edit={() => {console.log("edit")}} delete={() => {console.log("delete")}}/>
-                </ListItem>
-                <ListItem button className={classes.listItem}>
-                    ・<ListItemText
-                        classes={{secondary: classes.secondary}}
-                        primary="qwerty"
-                        secondary="qwerty"
-                    />
-                    <ItemMenu edit={() => {console.log("edit")}} delete={() => {console.log("delete")}}/>
-                </ListItem>
             </MUIList>
         </Paper>
     );

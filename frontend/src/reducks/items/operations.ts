@@ -15,9 +15,15 @@ export const translateBigCategory = (bigCategory: string) => {
     }
 }
 
-export const getItems = (user_id: string, month: string) => {
+export const itemsfilter = (items: itemState[], currentMonth: string) => {
+    const date = new Date(currentMonth);
+    const result = items.filter(item => new Date(item.date).getMonth() === date.getMonth());
+    return result;
+}
+
+export const getItems = (user_id: string | undefined) => {
     return async (dispatch: Dispatch) => {
-        await axios.get(`http://localhost:80/${user_id}/items/month/${month}`)
+        await axios.get(`http://localhost:80/${user_id}/items`)
         .then(resp => {
             dispatch(setItemsAction(resp.data));
         })
@@ -38,7 +44,7 @@ export const createItem = (user_id: string, item: itemState) => {
             }
         })
         .then(resp => {
-            dispatch(createItemAction(resp.data));
+            dispatch(createItemAction([resp.data]));
             dispatch(push('/items'));
         })
         .catch(e => {
@@ -51,11 +57,12 @@ export const deleteItem = (user_id: string, item_id: number) => {
     return async (dispatch: Dispatch, getState: () => StateFromReducersMapObject<ReducersMapObject<any, any>>) => {
         await axios.delete(`http://localhost:80/${user_id}/items/${item_id}`)
         .then(() => {
-            const prevItems = getState().items
-            const nextItems = prevItems.filter((item: itemState) => item.id !== item_id)
+            const prevItems = getState().items;
+            const nextItems = prevItems.filter((item: itemState) => item.id !== item_id);
             dispatch(deleteItemAction(nextItems));
             dispatch(push('/items'));
         })
+        
     }
 }
 

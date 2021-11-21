@@ -25,9 +25,9 @@ export const deleteItemAction = (items: itemState[]) => {
 };
 
 export const CREATE_ITEM = "CREATE_ITEM";
-export const createItemAction = (item: itemState) => {
+export const createItemAction = (item: itemState[]) => {
     return {
         type: "CREATE_ITEM",
-        payload: [item]
+        payload: item
     }
 };

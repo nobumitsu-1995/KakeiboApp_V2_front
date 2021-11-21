@@ -13,5 +13,5 @@ export type itemState = {
 
 export type itemAction = {
     type: string;
-    payload: any;
+    payload: itemState[];
 }

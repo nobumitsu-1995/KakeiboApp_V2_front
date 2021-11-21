@@ -1,22 +1,22 @@
-import { initialState } from "../store/initialState";
+import { initialState } from "../store/initialState"
 import * as Actions from './actions'
-import { itemAction } from "./type";
+import { categoryAction } from "./type"
 
-export const ItemsReducer = (state = [{...initialState.items}], action: itemAction) => {
+export const CategoriesReducer = (state = [{...initialState.categories}], action: categoryAction) => {
     switch(action.type) {
-        case Actions.SET_ITEMS:
+        case Actions.SET_CATEGORIES:
             return [
                 ...action.payload
             ]
-        case Actions.UPDATE_ITEM:
+        case Actions.UPDATE_CATEGORY:
             return [
                 ...action.payload
             ]
-        case Actions.DELETE_ITEM:
+        case Actions.DELETE_CATEGORY:
             return [
                 ...action.payload
             ]
-        case Actions.CREATE_ITEM:
+        case Actions.CREATE_CATEGORY:
             return [
                 ...state, ...action.payload
             ]
