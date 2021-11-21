@@ -8,7 +8,8 @@ export const signInAction = (userState: userState) => {
             isSignedIn: true,
             icon: userState.icon,
             uid: userState.uid,
-            username: userState.username
+            username: userState.username,
+            email: userState.email
         }
     }
 };
@@ -21,7 +22,8 @@ export const signOutAction = () => {
             isSignedIn: false,
             icon: "",
             uid: "",
-            username: ""
+            username: "",
+            email: ""
         }
     }
 };

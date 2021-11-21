@@ -97,7 +97,7 @@ export const updateCategory = (user_id: string, category: categoryState) => {
             }
         })
         .then(resp => {
-            const custum_list = getState().categories.custum_list.push(resp.data)
+            const custum_list = getState().categories.custum_list.filter((category: categoryState) => category.id !== resp.data.id).push(resp.data)
             switch (resp.data.big_category) {
                 case 'fixed_cost':
                     const fixed_costs = getState().categories.fixed_costs.filter((category: categoryState) => category.id !== resp.data.id).push(resp.data)

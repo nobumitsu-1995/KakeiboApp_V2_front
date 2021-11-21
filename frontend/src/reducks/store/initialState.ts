@@ -1,8 +1,3 @@
-export const initialMoneyInfoState = {
-    total_assets: 0,
-    target_amount: 0,
-    deadline: ""
-}
 
 export const initialCategoryState = {
     id: 0,
@@ -25,7 +20,8 @@ export const initialState = {
         uid: "",
         username: ""
     },
-    moneyInfos: {
+    money_infos: {
+        id: 0,
         total_assets: 0,
         target_amount: 0,
         deadline: "",
