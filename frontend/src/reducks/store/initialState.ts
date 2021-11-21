@@ -7,7 +7,7 @@ export const initialMoneyInfoState = {
 export const initialCategoryState = {
     id: 0,
     name: "",
-    user_id: 0,
+    user_id: "",
     big_category: "fixed_cost",
 }
 
@@ -15,7 +15,7 @@ export const initialPaymentMethodState = {
     id: 0,
     name: "",
     income: false,
-    user_id: 0,
+    user_id: "",
 }
 
 export const initialState = {
@@ -39,12 +39,10 @@ export const initialState = {
         custum_list: [initialCategoryState],
     },
     payment_methods: {
-        id: 0,
-        name: "",
-        income: false,
-        user_id: "",
-        created_at: "",
-        update_at: ""
+        incomes: [initialPaymentMethodState],
+        expenses: [initialPaymentMethodState],
+        default_list: [initialPaymentMethodState],
+        custum_list: [initialPaymentMethodState]
     },
     items: {
         id: 0,

@@ -9,6 +9,7 @@ import * as H from 'history';
 import { UsersReducer } from "../users/reducers";
 import { ItemsReducer } from "../items/reducers";
 import { CategoriesReducer } from "../categories/reducers";
+import { PaymentMethodsReducer } from "../paymentMethods/reducers";
 
 export default function createStore(history: H.History) {
     const middleWares = [routerMiddleware(history), thunk];
@@ -18,6 +19,7 @@ export default function createStore(history: H.History) {
             users: UsersReducer,
             items: ItemsReducer,
             categories: CategoriesReducer,
+            payment_methods: PaymentMethodsReducer,
         }),
         applyMiddleware(
             ...middleWares
