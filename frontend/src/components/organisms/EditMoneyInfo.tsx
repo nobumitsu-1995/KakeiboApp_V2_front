@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { initialMoneyInfoState } from "../../reducks/store/initialState";
+import { initialState } from "../../reducks/store/initialState";
 import {Button, Input} from "../atoms";
 
 const EditMoneyInfo = () => {
     
 
-    const [currentMoneyInfo, setCurrentMoneyInfo] = useState(initialMoneyInfoState);
+    const [currentMoneyInfo, setCurrentMoneyInfo] = useState(initialState.money_infos);
     
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = event.target;

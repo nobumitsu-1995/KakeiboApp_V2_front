@@ -5,21 +5,21 @@ import { categoryAction } from "./type"
 export const CategoriesReducer = (state = [{...initialState.categories}], action: categoryAction) => {
     switch(action.type) {
         case Actions.SET_CATEGORIES:
-            return [
+            return {
                 ...action.payload
-            ]
+            }
         case Actions.UPDATE_CATEGORY:
-            return [
+            return {
                 ...action.payload
-            ]
+            }
         case Actions.DELETE_CATEGORY:
-            return [
+            return {
                 ...action.payload
-            ]
+            }
         case Actions.CREATE_CATEGORY:
-            return [
+            return {
                 ...state, ...action.payload
-            ]
+            }
         default:
             return state
     }

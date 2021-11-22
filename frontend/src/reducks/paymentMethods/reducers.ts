@@ -5,21 +5,21 @@ import { paymentMethodAction } from "./type"
 export const PaymentMethodsReducer = (state = [{...initialState.payment_methods}], action: paymentMethodAction) => {
     switch(action.type) {
         case Actions.SET_PAYMENTMETHODS:
-            return [
+            return {
                 ...action.payload
-            ]
+            }
         case Actions.UPDATE_PAYMENTMETHOD:
-            return [
+            return {
                 ...action.payload
-            ]
+            }
         case Actions.DELETE_PAYMENTMETHOD:
-            return [
+            return {
                 ...action.payload
-            ]
+            }
         case Actions.CREATE_PAYMENTMETHOD:
-            return [
+            return {
                 ...state, ...action.payload
-            ]
+            }
         default:
             return state
     }

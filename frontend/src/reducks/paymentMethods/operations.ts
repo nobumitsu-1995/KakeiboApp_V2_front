@@ -4,7 +4,7 @@ import { createPaymentMethodAction, setPaymentMethodsAction } from "./actions";
 import { paymentMethodState } from "./type";
 
 
-export const getCategories = (user_id: string | undefined) => {
+export const getPaymentMethods = (user_id: string | undefined) => {
     return async (dispatch: Dispatch) => {
         await axios.get(`http://localhost:80/${user_id}/payment_methods`)
         .then(resp => {
