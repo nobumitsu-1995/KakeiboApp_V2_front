@@ -1,10 +1,14 @@
 import {Divider, List as MUIList, ListItem, ListItemIcon, ListItemText, makeStyles, Paper} from '@material-ui/core';
 import ListIcon from '@mui/icons-material/List';
+import { categoryState } from '../../reducks/categories/type';
+import { translateBigCategory } from '../../reducks/items/operations';
+import { translateIncome } from '../../reducks/paymentMethods/operations';
+import { PaymentMethodState } from '../../reducks/paymentMethods/type';
 import ItemMenu from './ItemMenu';
 
 type Props = {
     title: string;
-    contents?: string[];
+    contents: categoryState[] | PaymentMethodState[];
 }
 
 const useStyles = makeStyles({
@@ -25,6 +29,9 @@ const useStyles = makeStyles({
 
 const List: React.FC<Props> = (props) => {
     const classes = useStyles();
+    const defineSecondary = (props: any) => {
+        return props.big_category ? translateBigCategory(props.big_category) : translateIncome(props.income)
+    }
 
     return (
         <Paper>
@@ -41,14 +48,18 @@ const List: React.FC<Props> = (props) => {
                 className={classes.fixedList}
                 disablePadding={true}
             >
-                <ListItem button className={classes.listItem}>
-                    ・<ListItemText
-                        classes={{secondary: classes.secondary}}
-                        primary="qwerty"
-                        secondary="qwerty"
-                    />
-                    <ItemMenu edit={() => {console.log("edit")}} delete={() => {console.log("delete")}}/>
-                </ListItem>
+                {props.contents.map((content: categoryState | PaymentMethodState) => {
+                    return (
+                        <ListItem button className={classes.listItem}>
+                            ・<ListItemText
+                                classes={{secondary: classes.secondary}}
+                                primary={content.name}
+                                secondary={`カテゴリ：${defineSecondary(content)}`}
+                            />
+                            {content.user_id && <ItemMenu edit={() => {console.log("edit")}} delete={() => {console.log("delete")}}/>}
+                        </ListItem>
+                    )
+                })}
             </MUIList>
         </Paper>
     );

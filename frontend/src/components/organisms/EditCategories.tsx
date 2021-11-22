@@ -1,12 +1,17 @@
 import { Grid } from "@material-ui/core";
 import { useState } from "react";
+import { categoryState } from "../../reducks/categories/type";
 import { initialCategoryState } from "../../reducks/store/initialState";
 import { Button, Input } from "../atoms";
 import { List, SelectForm } from "../molecules";
 
-const EditCategories = () => {
+type Props = {
+    custumList: categoryState[];
+}
+
+const EditCategories: React.FC<Props> = props => {
     const [currentCategory, setCurrentCategory] = useState(initialCategoryState);
-    
+
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = event.target;
         setCurrentCategory({...currentCategory, [name]: value});
@@ -48,7 +53,7 @@ const EditCategories = () => {
                         </Grid>
                     </Grid>
                 </form>
-                <List title="Custum Categories"/>
+                <List title="Custum Categories" contents={props.custumList}/>
             </>
     );
 }

@@ -1,18 +1,18 @@
-export type paymentMethodState = {
+export type PaymentMethodState = {
     id: number;
     name: string;
     income: boolean;
-    user_id: string;
+    user_id?: string;
 }
 
-export type paymentMethodsState = {
-    incomes?: paymentMethodState[];
-    expenses?: paymentMethodState[];
-    default_list?: paymentMethodState[];
-    custum_list: paymentMethodState[];
+export type PaymentMethodsState = {
+    incomes?: PaymentMethodState[];
+    expenses?: PaymentMethodState[];
+    default_list?: PaymentMethodState[];
+    custum_list: PaymentMethodState[];
 }
 
-export type paymentMethodAction = {
+export type PaymentMethodAction = {
     type: string;
-    payload: paymentMethodsState[];
+    payload: PaymentMethodsState[];
 }

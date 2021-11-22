@@ -1,8 +1,8 @@
 import { initialState } from "../store/initialState"
 import * as Actions from './actions'
-import { paymentMethodAction } from "./type"
+import { PaymentMethodAction } from "./type"
 
-export const PaymentMethodsReducer = (state = [{...initialState.payment_methods}], action: paymentMethodAction) => {
+export const PaymentMethodsReducer = (state = [{...initialState.payment_methods}], action: PaymentMethodAction) => {
     switch(action.type) {
         case Actions.SET_PAYMENTMETHODS:
             return {

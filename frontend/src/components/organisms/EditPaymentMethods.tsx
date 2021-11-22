@@ -1,12 +1,16 @@
 import { Grid } from "@material-ui/core";
 import { useState } from "react";
+import { PaymentMethodState } from "../../reducks/paymentMethods/type";
 import { initialPaymentMethodState } from "../../reducks/store/initialState";
 import { Button, Input } from "../atoms";
 import { List, SelectForm } from "../molecules";
 
-const EditPaymentMethods = () => {
+type Props = {
+    custumList: PaymentMethodState[];
+}
+
+const EditPaymentMethods: React.FC<Props> = props => {
     const [currentPaymentMethod, setCurrentPaymentMethod] = useState(initialPaymentMethodState);
-    
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = event.target;
         setCurrentPaymentMethod({...currentPaymentMethod, [name]: value});
@@ -48,7 +52,7 @@ const EditPaymentMethods = () => {
                         </Grid>
                     </Grid>
                 </form>
-                <List title="Custum Payment Methods"/>
+                <List title="Custum Payment Methods" contents={props.custumList}/>
             </>
     );
 }
