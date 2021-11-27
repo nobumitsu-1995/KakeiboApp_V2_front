@@ -47,14 +47,16 @@ export const createCategory = (user_id: string, category: categoryState) => {
                     }))
                 break
                 case 'variable_cost':
-                    const variable_costs = getState().categories.variable_costs.push(resp.data)
+                    const variable_costs = getState().categories.variable_costs
+                    variable_costs.push(resp.data)
                     dispatch(createCategoryAction({
                         custum_list: custum_list,
                         variable_costs: variable_costs,
                     }))
                 break
                 case 'income':
-                    const incomes = getState().categories.incomes.push(resp.data)
+                    const incomes = getState().categories.incomes
+                    incomes.push(resp.data)
                     dispatch(createCategoryAction({
                         custum_list: custum_list,
                         incomes: incomes,
@@ -91,6 +93,7 @@ export const deleteCategory = (user_id: string, category_id: number, big_categor
                         incomes: incomes,
                     }))
             }
+            dispatch(pushTo('/user'))
         })
     }
 }
@@ -126,6 +129,7 @@ export const updateCategory = (user_id: string, category: categoryState) => {
                         incomes: incomes,
                     }))
             }
+            dispatch(pushTo('/user'))
         })
     }
 }

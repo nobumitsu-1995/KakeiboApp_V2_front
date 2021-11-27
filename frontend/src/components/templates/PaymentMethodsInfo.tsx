@@ -19,11 +19,32 @@ const PaymentMEthodsInfo = () => {
             <MonetizationOn/>
             <Switch>
                 <Route path="*/edit">
-                    <EditPaymentMethods custumList={custumList}/>
+                    <EditPaymentMethods />
+                    <List 
+                        title="Custum Payment Methods"
+                        contents={custumList}
+                        listType="payment_method"
+                    />
                 </Route>
-                <Route path="*/">
-                    <List title="Default Payment Methods" contents={defaultList}/>
-                    <List title="Custum Payment Methods" contents={custumList}/>
+                <Route path="*/payment_method/:id">
+                    ;lksndfg
+                    <List 
+                        title="Custum Payment Methods"
+                        contents={custumList}
+                        listType="payment_method"
+                    />
+                </Route>
+                <Route path="*">
+                    <List 
+                        title="Default Payment Methods"
+                        contents={defaultList}
+                        listType="payment_method"
+                    />
+                    <List 
+                        title="Custum Payment Methods"
+                        contents={custumList}
+                        listType="payment_method"
+                    />
                 </Route>
             </Switch>
         </Card>

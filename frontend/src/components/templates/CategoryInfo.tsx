@@ -20,10 +20,31 @@ const CategoriesInfo = () => {
             <Switch>
                 <Route path="*/edit">
                     <EditCategories custumList={custumList}/>
+                    <List
+                        title="Custum Categories"
+                        contents={custumList}
+                        listType="category"
+                        
+                    />
+                </Route>
+                <Route path="*/category/:id">
+                    ;lksndfg
+                    <List
+                        title="Custum Categories"
+                        contents={custumList}
+                        listType="category"
+                    />
                 </Route>
                 <Route path="*/">
-                    <List title="Default Categories" contents={defaultList}/>
-                    <List title="Custum Categories" contents={custumList}/>
+                    <List
+                        title="Default Categories"
+                        contents={defaultList}
+                    />
+                    <List
+                        title="Custum Categories"
+                        contents={custumList}
+                        listType="category"
+                    />
                 </Route>
             </Switch>
         </Card>

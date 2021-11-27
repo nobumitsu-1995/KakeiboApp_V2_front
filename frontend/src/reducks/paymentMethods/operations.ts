@@ -2,6 +2,7 @@ import axios from "axios";
 import { Dispatch, ReducersMapObject, StateFromReducersMapObject } from "redux";
 import { createPaymentMethodAction, setPaymentMethodsAction } from "./actions";
 import { PaymentMethodState } from "./type";
+import { push as pushTo } from 'connected-react-router';
 
 export const translateIncome = (income: boolean) => {
     return income ? "収入" : "支出"
@@ -35,20 +36,24 @@ export const createPaymentMethod = (user_id: string, payment_method: PaymentMeth
             }
         })
         .then(resp => {
-            const custum_list = getState().payment_methods.custum_list.push(resp.data)
+            const custum_list = getState().payment_methods.custum_list
+            custum_list.push(resp.data)
             if (resp.data.income) {
-                const incomes = getState().payment_methods.incomes.push(resp.data)
+                const incomes = getState().payment_methods.incomes
+                incomes.push(resp.data)
                 dispatch(createPaymentMethodAction({
                     custum_list: custum_list,
                     incomes: incomes,
                 }))
             } else {
-                const expenses = getState().payment_methods.expenses.push(resp.data)
+                const expenses = getState().payment_methods.expenses
+                expenses.push(resp.data)
                 dispatch(createPaymentMethodAction({
                     custum_list: custum_list,
                     expenses: expenses,
                 }))
             }
+            dispatch(pushTo('/user'))
         })
     }
 }
@@ -71,6 +76,7 @@ export const deletePaymentMethod = (user_id: string, payment_method_id: number, 
                     expenses: expenses,
                 }))
             }
+            dispatch(pushTo('/user'))
         })
     }
 }
@@ -99,6 +105,7 @@ export const updatePaymentMethod = (user_id: string, payment_method: PaymentMeth
                     expenses: expenses,
                 }))
             }
+            dispatch(pushTo('/user'))
         })
     }
 }

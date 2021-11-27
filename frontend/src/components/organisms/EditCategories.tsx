@@ -6,7 +6,7 @@ import { categoryState } from "../../reducks/categories/type";
 import { initialCategoryState } from "../../reducks/store/initialState";
 import { getUserId } from "../../reducks/users/selectors";
 import { Button, Input } from "../atoms";
-import { List, SelectForm } from "../molecules";
+import { SelectForm } from "../molecules";
 
 type Props = {
     custumList: categoryState[];
@@ -61,7 +61,6 @@ const EditCategories: React.FC<Props> = props => {
                         </Grid>
                     </Grid>
                 </form>
-                <List title="Custum Categories" contents={props.custumList}/>
             </>
     );
 }

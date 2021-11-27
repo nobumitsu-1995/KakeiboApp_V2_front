@@ -10,10 +10,10 @@ const Router = () => {
     return (
         <Switch>
             {!signedIn ?
-                <Route exact path="/" component={Home} />
+                <Route exact path="(/)?" component={Home} />
             :
                 <>
-                    <Route path="/user" component={User} />
+                    <Route path="/user/" component={User} />
                     <Route exact path="/items" component={Items} />
                 </>
             }

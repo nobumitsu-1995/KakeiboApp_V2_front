@@ -1,14 +1,18 @@
 import {Divider, List as MUIList, ListItem, ListItemIcon, ListItemText, makeStyles, Paper} from '@material-ui/core';
 import ListIcon from '@mui/icons-material/List';
+import { push } from 'connected-react-router';
+import { useDispatch } from 'react-redux';
+import { deleteCategory } from '../../reducks/categories/operations';
 import { categoryState } from '../../reducks/categories/type';
 import { translateBigCategory } from '../../reducks/items/operations';
-import { translateIncome } from '../../reducks/paymentMethods/operations';
+import { deletePaymentMethod, translateIncome } from '../../reducks/paymentMethods/operations';
 import { PaymentMethodState } from '../../reducks/paymentMethods/type';
 import ItemMenu from './ItemMenu';
 
 type Props = {
     title: string;
     contents: categoryState[] | PaymentMethodState[];
+    listType?: "category" | "payment_method";
 }
 
 const useStyles = makeStyles({
@@ -32,7 +36,17 @@ const List: React.FC<Props> = (props) => {
     const defineSecondary = (props: any) => {
         return props.big_category ? translateBigCategory(props.big_category) : translateIncome(props.income)
     }
-    const contents = props.contents
+    const dispatch = useDispatch();
+    const defineDeleteFunc = (content: any) => {
+        console.log("run")
+        if (content.big_category) {
+            console.log("category delete")
+            return dispatch(deleteCategory(content.user_id, content.id, content.big_category));
+        } else {
+            console.log("pm delete")
+            return dispatch(deletePaymentMethod(content.user_id, content.id, content.income))
+        }
+    }
 
     return (
         <Paper>
@@ -49,7 +63,7 @@ const List: React.FC<Props> = (props) => {
                 className={classes.fixedList}
                 disablePadding={true}
             >
-                {contents.map(content => {
+                {props.contents.map(content => {
                     return (
                         <ListItem button className={classes.listItem}>
                             ・<ListItemText
@@ -57,7 +71,15 @@ const List: React.FC<Props> = (props) => {
                                 primary={content.name}
                                 secondary={`カテゴリ：${defineSecondary(content)}`}
                             />
-                            {content.user_id && <ItemMenu edit={() => {console.log("edit")}} delete={() => {console.log("delete")}}/>}
+                            {content.user_id && 
+                                <ItemMenu 
+                                    edit={() => dispatch(push(`${props.listType}/${content.id}`))}
+                                    delete={() => {
+                                        window.confirm('削除しますか？') ?
+                                        defineDeleteFunc(content)
+                                        : alert('削除に失敗しました。')
+                                    }}
+                                />}
                         </ListItem>
                     )
                 })}

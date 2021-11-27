@@ -1,12 +1,14 @@
 import { Grid } from "@material-ui/core";
 import { useState } from "react";
-import { PaymentMethodState } from "../../reducks/paymentMethods/type";
+import { useDispatch, useSelector } from "react-redux";
+import { createPaymentMethod } from "../../reducks/paymentMethods/operations";
 import { initialPaymentMethodState } from "../../reducks/store/initialState";
+import { getUserId } from "../../reducks/users/selectors";
 import { Button, Input } from "../atoms";
-import { List, SelectForm } from "../molecules";
+import { SelectForm } from "../molecules";
 
 type Props = {
-    custumList: PaymentMethodState[];
+    
 }
 
 const EditPaymentMethods: React.FC<Props> = props => {
@@ -15,6 +17,9 @@ const EditPaymentMethods: React.FC<Props> = props => {
         const {name, value} = event.target;
         setCurrentPaymentMethod({...currentPaymentMethod, [name]: value});
     }
+    const dispatch = useDispatch();
+    const selector = useSelector(state => state);
+    const uid = getUserId(selector);
 
     return (
             <>
@@ -46,13 +51,15 @@ const EditPaymentMethods: React.FC<Props> = props => {
                                 variant="contained"
                                 size="medium"
                                 fullWidth={true}
+                                onClick={() => {
+                                    dispatch(createPaymentMethod(uid, currentPaymentMethod))
+                                }}
                             >
                                 Create
                             </Button>
                         </Grid>
                     </Grid>
                 </form>
-                <List title="Custum Payment Methods" contents={props.custumList}/>
             </>
     );
 }
