@@ -32,6 +32,7 @@ const List: React.FC<Props> = (props) => {
     const defineSecondary = (props: any) => {
         return props.big_category ? translateBigCategory(props.big_category) : translateIncome(props.income)
     }
+    const contents = props.contents
 
     return (
         <Paper>
@@ -48,7 +49,7 @@ const List: React.FC<Props> = (props) => {
                 className={classes.fixedList}
                 disablePadding={true}
             >
-                {props.contents.map((content: categoryState | PaymentMethodState) => {
+                {contents.map(content => {
                     return (
                         <ListItem button className={classes.listItem}>
                             ・<ListItemText

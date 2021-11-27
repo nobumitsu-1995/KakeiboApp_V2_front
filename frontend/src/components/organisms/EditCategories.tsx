@@ -1,7 +1,10 @@
 import { Grid } from "@material-ui/core";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { createCategory } from "../../reducks/categories/operations";
 import { categoryState } from "../../reducks/categories/type";
 import { initialCategoryState } from "../../reducks/store/initialState";
+import { getUserId } from "../../reducks/users/selectors";
 import { Button, Input } from "../atoms";
 import { List, SelectForm } from "../molecules";
 
@@ -11,11 +14,13 @@ type Props = {
 
 const EditCategories: React.FC<Props> = props => {
     const [currentCategory, setCurrentCategory] = useState(initialCategoryState);
-
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = event.target;
         setCurrentCategory({...currentCategory, [name]: value});
     }
+    const dispatch = useDispatch();
+    const selector = useSelector(state => state);
+    const uid = getUserId(selector);
 
     return (
             <>
@@ -47,6 +52,9 @@ const EditCategories: React.FC<Props> = props => {
                                 variant="contained"
                                 size="medium"
                                 fullWidth={true}
+                                onClick={() => {
+                                    dispatch(createCategory(uid, currentCategory))
+                                }}
                             >
                                 Create
                             </Button>

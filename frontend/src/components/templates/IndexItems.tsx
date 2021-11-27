@@ -22,7 +22,6 @@ const IndexItems: React.FC<Props> = (props) => {
             <Table headerItems={["収支発生日","カテゴリ","内容","値段","操作"]}>
                 {props.items.map((item) => (
                     <StyledTableRow key={item.id}>
-                        {console.log(item.date)}
                         <StyledTableCell align="center">
                             {item.date}
                         </StyledTableCell>

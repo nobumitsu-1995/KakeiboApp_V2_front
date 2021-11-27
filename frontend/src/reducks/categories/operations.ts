@@ -2,6 +2,8 @@ import axios from "axios"
 import { Dispatch, ReducersMapObject, StateFromReducersMapObject } from "redux"
 import { createCategoryAction, setCategoriesAction } from "./actions"
 import { categoryState } from "./type"
+import { push as pushTo } from 'connected-react-router';
+
 
 export const getCategories = (user_id: string | undefined) => {
     return async (dispatch: Dispatch) => {
@@ -33,27 +35,33 @@ export const createCategory = (user_id: string, category: categoryState) => {
             }
         })
         .then(resp => {
-            const custum_list = getState().categories.custum_list.push(resp.data)
+            const custum_list = getState().categories.custum_list
+            custum_list.push(resp.data)
             switch (resp.data.big_category) {
                 case 'fixed_cost':
-                    const fixed_costs = getState().categories.fixed_costs.push(resp.data)
-                    return dispatch(createCategoryAction({
+                    const fixed_costs = getState().categories.fixed_costs
+                    fixed_costs.push(resp.data)
+                    dispatch(createCategoryAction({
                         custum_list: custum_list,
                         fixed_costs: fixed_costs,
                     }))
+                break
                 case 'variable_cost':
                     const variable_costs = getState().categories.variable_costs.push(resp.data)
-                    return dispatch(createCategoryAction({
+                    dispatch(createCategoryAction({
                         custum_list: custum_list,
                         variable_costs: variable_costs,
                     }))
+                break
                 case 'income':
                     const incomes = getState().categories.incomes.push(resp.data)
-                    return dispatch(createCategoryAction({
+                    dispatch(createCategoryAction({
                         custum_list: custum_list,
                         incomes: incomes,
                     }))
+                break
             }
+            dispatch(pushTo('/user'))
         })
     }
 }

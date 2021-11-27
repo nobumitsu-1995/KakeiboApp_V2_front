@@ -14,5 +14,5 @@ export type PaymentMethodsState = {
 
 export type PaymentMethodAction = {
     type: string;
-    payload: PaymentMethodsState[];
+    payload: PaymentMethodsState;
 }
