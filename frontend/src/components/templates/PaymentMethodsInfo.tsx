@@ -4,7 +4,7 @@ import { Route, Switch } from "react-router";
 import { getCustumList, getDefaultList } from "../../reducks/paymentMethods/selectors";
 import { List } from "../molecules";
 import Card from "../molecules/Card";
-import EditPaymentMethods from "../organisms/EditPaymentMethods";
+import PaymentMethodsForm from "../organisms/PaymentMethodsForm";
 
 const PaymentMEthodsInfo = () => {
     const selector = useSelector(state => state);
@@ -19,15 +19,19 @@ const PaymentMEthodsInfo = () => {
             <MonetizationOn/>
             <Switch>
                 <Route path="*/edit">
-                    <EditPaymentMethods />
+                    <PaymentMethodsForm 
+                        formType="create"
+                    />
                     <List 
                         title="Custum Payment Methods"
                         contents={custumList}
                         listType="payment_method"
                     />
                 </Route>
-                <Route path="*/payment_method/:id">
-                    ;lksndfg
+                <Route path="*/payment_method/:paymentMethodId">
+                    <PaymentMethodsForm 
+                        formType="edit"
+                    />
                     <List 
                         title="Custum Payment Methods"
                         contents={custumList}

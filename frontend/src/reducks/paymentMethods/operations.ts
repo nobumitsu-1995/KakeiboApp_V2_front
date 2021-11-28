@@ -91,15 +91,18 @@ export const updatePaymentMethod = (user_id: string, payment_method: PaymentMeth
             }
         })
         .then(resp => {
-            const custum_list = getState().categories.custum_list.filter((payment_method: PaymentMethodState) => payment_method.id !== resp.data.id).push(resp.data)
+            const custum_list = getState().payment_methods.custum_list.filter((payment_method: PaymentMethodState) => payment_method.id !== resp.data.id)
+            custum_list.push(resp.data)
             if (resp.data.income) {
-                const incomes = getState().payment_methods.incomes.filter((payment_method: PaymentMethodState) => payment_method.id !== resp.data.id).push(resp.data)
+                const incomes = getState().payment_methods.incomes.filter((payment_method: PaymentMethodState) => payment_method.id !== resp.data.id)
+                incomes.push(resp.data)
                 dispatch(createPaymentMethodAction({
                     custum_list: custum_list,
                     incomes: incomes,
                 }))
             } else {
-                const expenses = getState().payment_methods.expenses.filter((payment_method: PaymentMethodState) => payment_method.id !== resp.data.id).push(resp.data)
+                const expenses = getState().payment_methods.expenses.filter((payment_method: PaymentMethodState) => payment_method.id !== resp.data.id)
+                expenses.push(resp.data)
                 dispatch(createPaymentMethodAction({
                     custum_list: custum_list,
                     expenses: expenses,

@@ -108,22 +108,26 @@ export const updateCategory = (user_id: string, category: categoryState) => {
             }
         })
         .then(resp => {
-            const custum_list = getState().categories.custum_list.filter((category: categoryState) => category.id !== resp.data.id).push(resp.data)
+            const custum_list = getState().categories.custum_list.filter((category: categoryState) => category.id !== resp.data.id)
+            custum_list.push(resp.data)
             switch (resp.data.big_category) {
                 case 'fixed_cost':
-                    const fixed_costs = getState().categories.fixed_costs.filter((category: categoryState) => category.id !== resp.data.id).push(resp.data)
+                    const fixed_costs = getState().categories.fixed_costs.filter((category: categoryState) => category.id !== resp.data.id)
+                    fixed_costs.push(resp.data)
                     return dispatch(createCategoryAction({
                         custum_list: custum_list,
                         fixed_costs: fixed_costs,
                     }))
                 case 'variable_cost':
-                    const variable_costs = getState().categories.variable_costs.filter((category: categoryState) => category.id !== resp.data.id).push(resp.data)
+                    const variable_costs = getState().categories.variable_costs.filter((category: categoryState) => category.id !== resp.data.id)
+                    variable_costs.push(resp.data)
                     return dispatch(createCategoryAction({
                         custum_list: custum_list,
                         variable_costs: variable_costs,
                     }))
                 case 'income':
-                    const incomes = getState().categories.incomes.filter((category: categoryState) => category.id !== resp.data.id).push(resp.data)
+                    const incomes = getState().categories.incomes.filter((category: categoryState) => category.id !== resp.data.id)
+                    incomes.push(resp.data)
                     return dispatch(createCategoryAction({
                         custum_list: custum_list,
                         incomes: incomes,

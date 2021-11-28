@@ -1,7 +1,9 @@
 import { Grid } from "@material-ui/core";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createCategory } from "../../reducks/categories/operations";
+import { useParams } from "react-router";
+import { createCategory, updateCategory } from "../../reducks/categories/operations";
+import { getCustumList } from "../../reducks/categories/selectors";
 import { categoryState } from "../../reducks/categories/type";
 import { initialCategoryState } from "../../reducks/store/initialState";
 import { getUserId } from "../../reducks/users/selectors";
@@ -9,18 +11,41 @@ import { Button, Input } from "../atoms";
 import { SelectForm } from "../molecules";
 
 type Props = {
-    custumList: categoryState[];
+    formType: "create" | "edit";
 }
 
-const EditCategories: React.FC<Props> = props => {
+const CategoriesForm: React.FC<Props> = props => {
     const [currentCategory, setCurrentCategory] = useState(initialCategoryState);
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = event.target;
         setCurrentCategory({...currentCategory, [name]: value});
     }
+    const { categoryId } = useParams<{categoryId?: string}>();
     const dispatch = useDispatch();
     const selector = useSelector(state => state);
     const uid = getUserId(selector);
+    const custumCList = getCustumList(selector);
+    const onClickFunc = () => {
+        switch (props.formType) {
+            case "create":
+                dispatch(createCategory(uid, currentCategory))
+            break
+            case "edit":
+                dispatch(updateCategory(uid, currentCategory))
+            break
+        }
+    }
+
+    useEffect(() => {
+        if (props.formType === "edit") {
+            const category = custumCList.find((category: categoryState) => {
+                return category.id === Number(categoryId)
+            })
+            setCurrentCategory(category)
+        } else {
+            setCurrentCategory(initialCategoryState)
+        }
+    }, [categoryId])
 
     return (
             <>
@@ -53,10 +78,10 @@ const EditCategories: React.FC<Props> = props => {
                                 size="medium"
                                 fullWidth={true}
                                 onClick={() => {
-                                    dispatch(createCategory(uid, currentCategory))
+                                    onClickFunc();
                                 }}
                             >
-                                Create
+                                {props.formType === "create" ? "CREATE" : "UPDATE"}
                             </Button>
                         </Grid>
                     </Grid>
@@ -65,4 +90,4 @@ const EditCategories: React.FC<Props> = props => {
     );
 }
 
-export default EditCategories;
+export default CategoriesForm;

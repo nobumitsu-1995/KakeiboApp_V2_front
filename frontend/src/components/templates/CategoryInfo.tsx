@@ -4,7 +4,7 @@ import { Route, Switch } from "react-router";
 import { getCustumList, getDefaultList } from "../../reducks/categories/selectors";
 import { List } from "../molecules";
 import Card from "../molecules/Card";
-import EditCategories from "../organisms/EditCategories";
+import CategoriesForm from "../organisms/CategoriesForm";
 
 const CategoriesInfo = () => {
     const selector = useSelector(state => state);
@@ -19,16 +19,16 @@ const CategoriesInfo = () => {
             <Dns/>
             <Switch>
                 <Route path="*/edit">
-                    <EditCategories custumList={custumList}/>
+                    <CategoriesForm formType='create'/>
                     <List
                         title="Custum Categories"
                         contents={custumList}
                         listType="category"
-                        
+
                     />
                 </Route>
-                <Route path="*/category/:id">
-                    ;lksndfg
+                <Route path="*/category/:categoryId">
+                    <CategoriesForm formType='edit'/>
                     <List
                         title="Custum Categories"
                         contents={custumList}

@@ -73,7 +73,7 @@ const List: React.FC<Props> = (props) => {
                             />
                             {content.user_id && 
                                 <ItemMenu 
-                                    edit={() => dispatch(push(`${props.listType}/${content.id}`))}
+                                    edit={() => dispatch(push(`/user/${props.listType}/${content.id}`))}
                                     delete={() => {
                                         window.confirm('削除しますか？') ?
                                         defineDeleteFunc(content)

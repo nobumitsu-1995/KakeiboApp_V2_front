@@ -1,25 +1,51 @@
 import { Grid } from "@material-ui/core";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createPaymentMethod } from "../../reducks/paymentMethods/operations";
+import { useParams } from "react-router";
+import { createPaymentMethod, updatePaymentMethod } from "../../reducks/paymentMethods/operations";
+import { getCustumList } from "../../reducks/paymentMethods/selectors";
+import { PaymentMethodState } from "../../reducks/paymentMethods/type";
 import { initialPaymentMethodState } from "../../reducks/store/initialState";
 import { getUserId } from "../../reducks/users/selectors";
 import { Button, Input } from "../atoms";
 import { SelectForm } from "../molecules";
 
 type Props = {
-    
+    formType: "create" | "edit";
 }
 
-const EditPaymentMethods: React.FC<Props> = props => {
+const PaymentMethodsForm: React.FC<Props> = props => {
     const [currentPaymentMethod, setCurrentPaymentMethod] = useState(initialPaymentMethodState);
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = event.target;
         setCurrentPaymentMethod({...currentPaymentMethod, [name]: value});
     }
+    const { paymentMethodId } = useParams<{paymentMethodId? :string}>();
     const dispatch = useDispatch();
     const selector = useSelector(state => state);
     const uid = getUserId(selector);
+    const custumList = getCustumList(selector);
+    const onClickFunc = () => {
+        switch (props.formType) {
+            case "create":
+                dispatch(createPaymentMethod(uid, currentPaymentMethod))
+            break
+            case "edit":
+                dispatch(updatePaymentMethod(uid, currentPaymentMethod))
+            break
+        }
+    }
+
+    useEffect(() => {
+        if (props.formType === "edit") {
+            const paymentMethod = custumList.find((paymentMethod: PaymentMethodState) => {
+                return paymentMethod.id === Number(paymentMethodId)
+            })
+            setCurrentPaymentMethod(paymentMethod)
+        } else {
+            setCurrentPaymentMethod(initialPaymentMethodState)
+        }
+    }, [paymentMethodId])
 
     return (
             <>
@@ -52,10 +78,10 @@ const EditPaymentMethods: React.FC<Props> = props => {
                                 size="medium"
                                 fullWidth={true}
                                 onClick={() => {
-                                    dispatch(createPaymentMethod(uid, currentPaymentMethod))
+                                    onClickFunc();
                                 }}
                             >
-                                Create
+                                {props.formType === "create" ? "CREATE" : "UPDATE"}
                             </Button>
                         </Grid>
                     </Grid>
@@ -64,4 +90,4 @@ const EditPaymentMethods: React.FC<Props> = props => {
     );
 }
 
-export default EditPaymentMethods;
+export default PaymentMethodsForm;
