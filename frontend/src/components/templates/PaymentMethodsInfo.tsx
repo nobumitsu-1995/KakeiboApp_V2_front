@@ -1,13 +1,15 @@
 import { MonetizationOn } from "@mui/icons-material";
-import { useSelector } from "react-redux";
+import { push } from "connected-react-router";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router";
 import { getCustumList, getDefaultList } from "../../reducks/paymentMethods/selectors";
-import { List } from "../molecules";
+import { ItemMenu, List } from "../molecules";
 import Card from "../molecules/Card";
 import PaymentMethodsForm from "../organisms/PaymentMethodsForm";
 
 const PaymentMEthodsInfo = () => {
     const selector = useSelector(state => state);
+    const dispatch = useDispatch();
     const defaultList = getDefaultList(selector);
     const custumList = getCustumList(selector);
 
@@ -15,6 +17,7 @@ const PaymentMEthodsInfo = () => {
         <Card
             color="gold"
             title={"Payment Methods"}
+            action={<ItemMenu edit={() => dispatch(push('/user/edit'))} />}
         >
             <MonetizationOn/>
             <Switch>
