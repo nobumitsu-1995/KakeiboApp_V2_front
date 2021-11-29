@@ -4,8 +4,9 @@ import { push } from "connected-react-router";
 import { getItems } from "../items/operations";
 import { getCategories } from "../categories/operations";
 import { getPaymentMethods } from "../paymentMethods/operations";
+import { getMoneyInfo } from "../moneyInfos/operations";
 
-export const signIn = (user: User | undefined) => {
+export const signIn = (user?: User) => {
     return async (dispatch: any) => {
         dispatch(signInAction({
             isSignedIn: true,
@@ -17,6 +18,7 @@ export const signIn = (user: User | undefined) => {
         dispatch(getItems(user?.sub))
         dispatch(getCategories(user?.sub))
         dispatch(getPaymentMethods(user?.sub))
+        dispatch(getMoneyInfo(user?.sub))
         dispatch(push('/items'))
     }
 }

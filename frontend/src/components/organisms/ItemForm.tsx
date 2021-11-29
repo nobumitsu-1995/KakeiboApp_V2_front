@@ -135,7 +135,7 @@ const ItemForm: React.FC<Props> = props => {
                         onClickFunc();
                     }}
                 >
-                    Create
+                    {props.formType === "create" ? "CREATE" : "UPDATE"}
                 </Button>
             </form>
     );

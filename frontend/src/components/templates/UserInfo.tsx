@@ -2,7 +2,7 @@ import { Avatar } from "@material-ui/core";
 import { AccountBoxOutlined } from "@mui/icons-material";
 import { Typography } from "@mui/material";
 import { useSelector } from "react-redux";
-import { getUserIcon, getUserId, getUserName } from "../../reducks/users/selectors";
+import { getUserEmail, getUserIcon, getUserId, getUserName } from "../../reducks/users/selectors";
 import Card from "../molecules/Card";
 
 const UserInfo = () => {
@@ -10,6 +10,7 @@ const UserInfo = () => {
     const username = getUserName(selector);
     const icon = getUserIcon(selector);
     const id = getUserId(selector);
+    const email = getUserEmail(selector);
 
     return (
         <Card
@@ -28,6 +29,9 @@ const UserInfo = () => {
                 </Typography>
                 <Typography color="textSecondary">
                     ID：{id}
+                </Typography>
+                <Typography color="textSecondary">
+                    Email：{email}
                 </Typography>
             </>
         </Card>

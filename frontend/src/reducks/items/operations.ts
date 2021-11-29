@@ -21,7 +21,7 @@ export const itemsfilter = (items: itemState[], currentMonth: string) => {
     return result;
 }
 
-export const getItems = (user_id: string | undefined) => {
+export const getItems = (user_id?: string) => {
     return async (dispatch: Dispatch) => {
         await axios.get(`http://localhost:80/${user_id}/items`)
         .then(resp => {

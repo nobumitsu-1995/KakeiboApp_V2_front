@@ -15,3 +15,11 @@ export const updateMoneyInfoAction = (money_info: moneyInfoState) => {
         payload: money_info
     }
 }
+
+export const CREATE_MONEYINFO = "CREATE_MONEYINFO";
+export const createMoneyInfoAction = (money_info: moneyInfoState) => {
+    return {
+        type: "CREATE_MONEYINFO",
+        payload: money_info
+    }
+}

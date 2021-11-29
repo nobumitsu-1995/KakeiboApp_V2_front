@@ -12,6 +12,10 @@ export const MoneyInfoReducer = (state = [{...initialState.categories}], action:
             return {
                 state, ...action.payload
             }
+        case Actions.CREATE_MONEYINFO:
+            return {
+                ...action.payload
+            }
         default:
             return state
     }

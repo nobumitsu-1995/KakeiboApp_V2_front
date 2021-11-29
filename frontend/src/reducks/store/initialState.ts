@@ -21,7 +21,6 @@ export const initialState = {
         username: ""
     },
     money_infos: {
-        id: 0,
         total_assets: 0,
         target_amount: 0,
         deadline: "",

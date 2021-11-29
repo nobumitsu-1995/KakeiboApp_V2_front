@@ -1,5 +1,4 @@
 export type moneyInfoState = {
-    id: number;
     total_assets: number;
     target_amount: number;
     deadline: string;
