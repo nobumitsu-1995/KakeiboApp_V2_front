@@ -29,10 +29,10 @@ const CategoriesForm: React.FC<Props> = props => {
         switch (props.formType) {
             case "create":
                 dispatch(createCategory(uid, currentCategory))
-            break
+            break;
             case "edit":
                 dispatch(updateCategory(uid, currentCategory))
-            break
+            break;
         }
     }
 

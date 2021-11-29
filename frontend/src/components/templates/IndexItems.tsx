@@ -1,12 +1,17 @@
-import { push } from "connected-react-router";
+import EditIcon from '@mui/icons-material/Edit';
 import { useDispatch, useSelector } from "react-redux";
 import { deleteItem, translateBigCategory } from "../../reducks/items/operations";
 import { itemState } from "../../reducks/items/type";
 import { getUserId } from "../../reducks/users/selectors";
+import { Button } from "../atoms";
+import { Modal } from "../molecules";
 import ItemMenu from "../molecules/ItemMenu";
 import Table, { StyledTableCell, StyledTableRow } from "../molecules/Table";
-import AddItem from "../organisms/AddItem";
+import ItemForm from "../organisms/ItemForm";
 import ShowItem from "../organisms/ShowItem";
+import { initialState } from "../../reducks/store/initialState";
+import { IconButton } from '@mui/material';
+import { AddCircle } from '@mui/icons-material';
 
 type Props = {
     items: itemState[];
@@ -31,8 +36,20 @@ const IndexItems: React.FC<Props> = (props) => {
                         <StyledTableCell align="center"><ShowItem item={item}/></StyledTableCell>
                         <StyledTableCell align="right">{item.price}円</StyledTableCell>
                         <StyledTableCell align="center">
+                            <Modal>
+                                <Button
+                                    children={"edit"}
+                                    color="inherit"
+                                    size="small"
+                                    variant="text"
+                                    startIcon={<EditIcon color="info"/>}
+                                />
+                                <ItemForm
+                                    formType="edit"
+                                    item={item}
+                                />
+                            </Modal>
                             <ItemMenu
-                                edit={() => dispatch(push("/items"))}
                                 delete={() => {
                                     window.confirm('削除しますか？') ?
                                     dispatch(deleteItem(uid, item.id))
@@ -43,7 +60,13 @@ const IndexItems: React.FC<Props> = (props) => {
                     </StyledTableRow>
                 ))}
             </Table>
-            <AddItem/>
+            <Modal>
+                <IconButton>
+                    <AddCircle color="secondary" style={{ fontSize: 80 }} />
+                </IconButton>
+                <ItemForm formType="create" item={initialState.items}/>
+            </Modal>
+            
         </>
     );
 }

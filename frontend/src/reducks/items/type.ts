@@ -2,9 +2,9 @@ export type itemState = {
     id: number;
     date: string;
     category_id : number;
-    category: {big_category: string, name: string};
+    category: {id: number, big_category: string, name: string};
     payment_method_id: number;
-    payment_method: {name: string};
+    payment_method: {id: number, name: string, income: boolean};
     name: string;
     price: number;
     note: string;
