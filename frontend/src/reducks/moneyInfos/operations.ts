@@ -1,6 +1,6 @@
 import axios from "axios"
 import { push } from "connected-react-router"
-import { Dispatch } from "redux"
+import { Dispatch, ReducersMapObject, StateFromReducersMapObject } from "redux"
 import { createMoneyInfoAction, setMoneyInfoAction, updateMoneyInfoAction } from "./actions"
 import { moneyInfoState } from "./type"
 
@@ -50,6 +50,23 @@ export const createMoneyInfo = (user_id?: string) => {
         })
         .then(resp => {
             dispatch(createMoneyInfoAction(
+                resp.data
+            ));
+        })
+    }
+}
+
+export const calculateTotalAssets = (user_id: string, price: number) => {
+    return async (dispatch: Dispatch, getState: () => StateFromReducersMapObject<ReducersMapObject<any, any>>) => {
+        const prev_total_assets = getState().money_info.total_assets
+        const new_total_assets = prev_total_assets + price;
+        await axios.patch(`http://localhost:80/${user_id}/money_info`, {
+            money_info: {
+                total_assets: new_total_assets
+            }    
+        })
+        .then(resp => {
+            dispatch(updateMoneyInfoAction(
                 resp.data
             ));
         })

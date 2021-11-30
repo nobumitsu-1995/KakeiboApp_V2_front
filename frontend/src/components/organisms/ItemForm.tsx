@@ -96,7 +96,7 @@ const ItemForm: React.FC<Props> = props => {
                     <AttachFile/>
                     <>
                         <Typography color="textSecondary">
-                            <SelectForm name={"big_category"} label={"大分類"} datas={big_categories} disabled={null} onChange={changeFormDatas} /> <span>/</span>
+                            {props.formType === "create" && <SelectForm name={"big_category"} label={"大分類"} datas={big_categories} disabled={null} onChange={changeFormDatas} />}
                             <SelectForm value={currentItem.category_id} name={"category_id"} label={"小分類"} datas={categories} disabled={null} onChange={handleInputChange} />
                         </Typography>
                         <Typography variant="h5" component="h2">

@@ -1,8 +1,6 @@
 import { Grid, Typography, Card as MUICard } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { getDeadline, getTargetAmount, getTotalAssets } from "../../reducks/moneyInfos/selectors";
 
 type Props = {
     total_assets: number;

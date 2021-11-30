@@ -1,6 +1,7 @@
 import axios from "axios";
 import { push } from "connected-react-router";
 import { Dispatch, ReducersMapObject, StateFromReducersMapObject } from "redux";
+import { calculateTotalAssets } from "../moneyInfos/operations";
 import { createItemAction, deleteItemAction, setItemsAction, updateItemAction } from "./actions";
 import { itemState } from "./type";
 
@@ -31,7 +32,7 @@ export const getItems = (user_id?: string) => {
 }
 
 export const createItem = (user_id: string, item: itemState) => {
-    return async (dispatch: Dispatch) => {
+    return async (dispatch: any) => {
         await axios.post(`http://localhost:80/${user_id}/items`, {
             item: {
                 date: item.date,
@@ -44,6 +45,8 @@ export const createItem = (user_id: string, item: itemState) => {
             }
         })
         .then(resp => {
+            const price = resp.data.category.big_category !== "income" ? -resp.data.price : resp.data.price 
+            dispatch(calculateTotalAssets(user_id, price))
             dispatch(createItemAction([resp.data]));
             dispatch(push('/items'));
         })
@@ -67,7 +70,7 @@ export const deleteItem = (user_id: string, item_id: number) => {
 }
 
 export const updateItem = (user_id: string, item: itemState) => {
-    return async (dispatch: Dispatch, getState: () => StateFromReducersMapObject<ReducersMapObject<any, any>>) => {
+    return async (dispatch: any, getState: () => StateFromReducersMapObject<ReducersMapObject<any, any>>) => {
         await axios.patch(`http://localhost:80/${user_id}/items/${item.id}`, {
             item: {
                 date: item.date,
@@ -81,8 +84,13 @@ export const updateItem = (user_id: string, item: itemState) => {
         })
         .then(resp => {
             const prevItems = getState().items
+            const prevItemPrice = prevItems.find((prevItem: itemState) => prevItem.id === item.id).price
             const nextItems = prevItems.filter((prevItem: itemState) => prevItem.id !== item.id)
             nextItems.push(resp.data)
+            if (resp.data.price !== prevItemPrice) {
+                const price = resp.data.category.big_category !== "income" ? -(resp.data.price - prevItemPrice) : resp.data.price - prevItemPrice
+                dispatch(calculateTotalAssets(user_id, price))
+            }
             dispatch(updateItemAction(nextItems));
             dispatch(push('/items'));
         })
