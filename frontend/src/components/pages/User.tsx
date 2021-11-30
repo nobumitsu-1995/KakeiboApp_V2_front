@@ -7,27 +7,25 @@ import UserInfo from "../templates/UserInfo"
 
 const User = () => {
     return (
-        <>
-            <br/><br/><br/><br/><br/><br/>
-            <Grid container spacing={3}>
-                <Grid item xs={4}>
-                    <UserInfo/>
-                </Grid>
-                <Grid item xs={8}>
-                    <MoneyInfo/>
-                </Grid>
-                <Grid item xs={6}>
-                    <CategoriesInfo/>
-                </Grid>
-                <Grid item xs={6}>
-                    <PaymentMEthodsInfo/>
-                </Grid>
+        <Grid
+            container 
+            spacing={2} 
+            justifyContent="center"
+            alignItems="flex-start"
+        >
+            <Grid item>
+                <UserInfo/>
             </Grid>
-            
-            
-            
-            
-        </>
+            <Grid item>
+                <MoneyInfo/>
+            </Grid>
+            <Grid item>
+                <CategoriesInfo/>
+            </Grid>
+            <Grid item>
+                <PaymentMEthodsInfo/>
+            </Grid>
+        </Grid>
     )
 }
 

@@ -1,5 +1,5 @@
-import { AppBar, makeStyles, Paper, Tab } from "@material-ui/core";
-import { ArrowLeft, ArrowRight } from "@mui/icons-material";
+import { AppBar, IconButton, makeStyles, Paper, Tab } from "@material-ui/core";
+import { AddCircle, ArrowLeft, ArrowRight } from "@mui/icons-material";
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -11,6 +11,8 @@ import ItemsCalendar from "../templates/Calendar";
 import Dashboard from "../templates/Dashboard";
 import IndexItems from "../templates/IndexItems";
 import { itemState } from "../../reducks/items/type";
+import { Modal } from "../molecules";
+import ItemForm from "../organisms/ItemForm";
 
 const useStyles = makeStyles({
     subject: {
@@ -65,33 +67,40 @@ const Items = () => {
 
     return (
         <>
-            <br/><br/><br/>
-            <h1>Income and Expenditure Information</h1>
-            <div>
+            <h1>月別収支情報</h1>
+            <div style={{marginBottom: 20}}>
                 <Button variant="contained" size="small" color="primary" onClick={prevMonth} startIcon={<ArrowLeft/>} >前月</Button>
                 <span className={classes.subject}>{new Date(currentMonth).getFullYear()}年{new Date(currentMonth).getMonth() + 1}月</span>
                 <Button variant="contained" size="small" color="primary" onClick={nextMonth} endIcon={<ArrowRight/>}>次月</Button>
             </div>
-            <TabContext value={value} >
-                <AppBar position="static" color="inherit">
-                    <TabList onChange={handleChange} aria-label="simple tabs example">
-                        <Tab label="月別収支一覧" value="index"/>
-                        <Tab label="カレンダー" value="calender" />
-                        <Tab label="月別収支情報" value="dashboard" />
-                    </TabList>
-                </AppBar>
-                <Paper square className={classes.paper}>
-                    <TabPanel value="index">
-                        <IndexItems items={items} />
-                    </TabPanel>
-                    <TabPanel value="calender">
-                        <ItemsCalendar items={items} currentMonth={currentMonth}/>
-                    </TabPanel>
-                    <TabPanel value="dashboard">
-                        <Dashboard items={items} currentMonth={currentMonth} />
-                    </TabPanel>
-                </Paper>
-            </TabContext>
+            <Modal>
+                <IconButton style={{position: "fixed", right: "3%", bottom: "3%"}}>
+                    <AddCircle color="error" style={{fontSize: 80}} />
+                </IconButton>
+                <ItemForm formType="create" item={initialState.items}/>
+            </Modal>
+            <div style={{maxWidth: 1200, margin: "0 auto"}}>
+                <TabContext value={value}>
+                    <AppBar position="static" color="inherit">
+                        <TabList onChange={handleChange} aria-label="simple tabs example">
+                            <Tab label="月別収支一覧" value="index"/>
+                            <Tab label="カレンダー" value="calender" />
+                            <Tab label="月別収支情報" value="dashboard" />
+                        </TabList>
+                    </AppBar>
+                    <Paper square>
+                        <TabPanel value="index">
+                            <IndexItems items={items} />
+                        </TabPanel>
+                        <TabPanel value="calender">
+                            <ItemsCalendar items={items} currentMonth={currentMonth}/>
+                        </TabPanel>
+                        <TabPanel value="dashboard">
+                            <Dashboard items={items} currentMonth={currentMonth} />
+                        </TabPanel>
+                    </Paper>
+                </TabContext>
+            </div>
         </>
     );
 }

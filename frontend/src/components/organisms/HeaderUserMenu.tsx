@@ -64,7 +64,7 @@ const HeaderUserMenu = () => {
                     <ListItemIcon>
                         <Settings fontSize="small"/>
                     </ListItemIcon>
-                    Settings
+                    ユーザー情報設定
                 </MenuItem>
                 <MenuItem
                     onClick={() => {
@@ -74,7 +74,7 @@ const HeaderUserMenu = () => {
                     <ListItemIcon>
                         <Logout fontSize="small"/>
                     </ListItemIcon>
-                    Logout
+                    ログアウト
                 </MenuItem>
             </Menu>
         </>

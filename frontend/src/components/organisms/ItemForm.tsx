@@ -92,51 +92,60 @@ const ItemForm: React.FC<Props> = props => {
     return (
         
             <form>
-                <Card color={"green"} title={"支出情報"}>
-                    <AttachFile/>
-                    <>
-                        <Typography color="textSecondary">
-                            {props.formType === "create" && <SelectForm name={"big_category"} label={"大分類"} datas={big_categories} disabled={null} onChange={changeFormDatas} />}
-                            <SelectForm value={currentItem.category_id} name={"category_id"} label={"小分類"} datas={categories} disabled={null} onChange={handleInputChange} />
+                <div style={{margin: 10}}>
+                    <Card color={"green"} title={"支出情報"}>
+                        <AttachFile/>
+                        <>
+                            <Typography color="textSecondary">
+                                {props.formType === "create" && <SelectForm name={"big_category"} label={"大分類"} datas={big_categories} disabled={null} onChange={changeFormDatas} />}
+                                <SelectForm value={currentItem.category_id} name={"category_id"} label={"小分類"} datas={categories} disabled={null} onChange={handleInputChange} />
+                            </Typography>
+                            <Typography variant="h5" component="h2">
+                                <Input name={"name"} label={"収支内容"} value={currentItem.name} type={"string"} onChange={handleInputChange}/>
+                                <Input name={"price"} label={"値段"} value={currentItem.price} placeholder={"¥"} type={"number"} onChange={handleInputChange}/>
+                            </Typography>
+                            <Typography align="right" color="textSecondary">
+                                <Input name={"date"} label={"収支発生日"} value={currentItem.date} type={"date"} onChange={handleInputChange} />
+                            </Typography>
+                        </>
+                    </Card>
+                </div>
+                <div style={{margin: 10}}>
+                    <Card color={"gold"}　title={"支払方法"}>
+                        <MonetizationOn/>
+                        <Typography>
+                            <SelectForm value={currentItem.payment_method_id} name={"payment_method_id"} label={"支払方法"} datas={paymentMethods} disabled={"disabled"} onChange={handleInputChange} />
                         </Typography>
-                        <Typography variant="h5" component="h2">
-                            <Input name={"name"} label={"収支内容"} value={currentItem.name} type={"string"} onChange={handleInputChange}/>
-                            <Input name={"price"} label={"値段"} value={currentItem.price} placeholder={"¥"} type={"number"} onChange={handleInputChange}/>
-                        </Typography>
-                        <Typography align="right" color="textSecondary">
-                            <Input name={"date"} label={"収支発生日"} value={currentItem.date} type={"date"} onChange={handleInputChange} />
-                        </Typography>
-                    </>
-                </Card>
-                <Card color={"gold"}　title={"支払方法"}>
-                    <MonetizationOn/>
-                    <Typography>
-                        <SelectForm value={currentItem.payment_method_id} name={"payment_method_id"} label={"支払方法"} datas={paymentMethods} disabled={"disabled"} onChange={handleInputChange} />
-                    </Typography>
-                </Card>
-                <Card color="green"　title={"備考"}>
-                    <Comment/>
-                    <TextField
-                        name="note"
-                        label="備考"
-                        multiline
-                        rows={4}
-                        defaultValue={currentItem.note}
-                        variant="outlined"
-                        onChange={handleInputChange}
-                    />
-                </Card>
-                <Button
-                    color="primary"
-                    variant="contained"
-                    size="medium"
-                    fullWidth={true}
-                    onClick={() => {
-                        onClickFunc();
-                    }}
-                >
-                    {props.formType === "create" ? "CREATE" : "UPDATE"}
-                </Button>
+                    </Card>
+                </div>
+                <div style={{margin: 10}}>
+                    <Card color="green"　title={"備考"}>
+                        <Comment/>
+                        <TextField
+                            name="note"
+                            label="備考"
+                            multiline
+                            rows={4}
+                            defaultValue={currentItem.note}
+                            variant="outlined"
+                            onChange={handleInputChange}
+                            fullWidth
+                        />
+                    </Card>
+                </div>
+                <div style={{margin: 10}}>
+                    <Button
+                        color="primary"
+                        variant="contained"
+                        size="medium"
+                        fullWidth={true}
+                        onClick={() => {
+                            onClickFunc();
+                        }}
+                    >
+                        {props.formType === "create" ? "CREATE" : "UPDATE"}
+                    </Button>
+                </div>
             </form>
     );
 }

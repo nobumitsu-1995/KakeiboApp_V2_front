@@ -1,68 +1,60 @@
-import React from "react";
-import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
-import {Modal as MUIModal, Backdrop, Fade} from "@material-ui/core";
+import React, { useEffect } from "react";
+import { Dialog, DialogContentText, IconButton} from "@material-ui/core";
+import CloseIcon from '@mui/icons-material/Close';
+import { useLocation } from "react-router";
 
 type Props = {
     children: React.ReactNode[];
 }
 
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        modal: {
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center"
-        },
-        paper: {
-            backgroundColor: theme.palette.background.paper,
-            border: "1px solid #000",
-            boxShadow: theme.shadows[5],
-            padding: theme.spacing(2, 4, 3),
-            display: "flex",
-            flexDirection: "column"
-        },
-        button: {
-            display: "inline"
-        },
-    })
-    );
-
 const Modal: React.FC<Props> = (props) => {
-    const classes = useStyles();
-    const [open, setOpen] = React.useState<boolean>(false);
 
+    const [open, setOpen] = React.useState(false);
+    const location = useLocation();
     const handleOpen = () => {
         setOpen(true);
     };
-    
     const handleClose = () => {
         setOpen(false);
     };
+    const descriptionElementRef = React.useRef<HTMLElement>(null);
+    React.useEffect(() => {
+        if (open) {
+        const { current: descriptionElement } = descriptionElementRef;
+        if (descriptionElement !== null) {
+            descriptionElement.focus();
+        }
+        }
+    }, [open]);
+
+    useEffect(() => {
+        setOpen(false);
+    }, [location])
 
     return (
-        <>
-            <div className={classes.button} onClick={handleOpen} >
-                {props.children[0]}
-            </div>
-            <MUIModal
-                aria-labelledby="transition-modal-title"
-                aria-describedby="transition-modal-description"
-                className={classes.modal}
-                open={open}
-                onClose={handleClose}
-                closeAfterTransition
-                BackdropComponent={Backdrop}
-                BackdropProps={{
-                    timeout: 500
-                }}
-            >
-                <Fade in={open}>
-                    <div className={classes.paper}>
+            <div>
+                <div style={{display: "inline"}} onClick={handleOpen} >
+                    {props.children[0]}
+                </div>
+                <Dialog
+                    open={open}
+                    onClose={handleClose}
+                    scroll="body"
+                    aria-labelledby="scroll-dialog-title"
+                    aria-describedby="scroll-dialog-description"
+                >
+                    <IconButton onClick={handleClose} style={{position: "absolute", right: -5, top: -5 }} size="small" >
+                        <CloseIcon />
+                    </IconButton>
+                    <DialogContentText
+                        id="scroll-dialog-description"
+                        ref={descriptionElementRef}
+                        tabIndex={-1}
+                    >
                         {props.children[1]}
-                    </div>
-                </Fade>
-            </MUIModal>
-        </>
+                    </DialogContentText>
+                </Dialog>
+            </div>
     );
 };
 

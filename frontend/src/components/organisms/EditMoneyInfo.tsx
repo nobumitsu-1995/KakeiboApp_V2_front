@@ -36,7 +36,7 @@ const EditMoneyInfo: React.FC<Props> = (props) => {
         <form>
             <Input
                 name="target_amount"
-                label="Target Savings Amount"
+                label="目標貯金額"
                 placeholder="¥"
                 type="number"
                 value={currentMoneyInfo.target_amount}
@@ -44,7 +44,7 @@ const EditMoneyInfo: React.FC<Props> = (props) => {
             />
             <Input
                 name="total_assets"
-                label="Total Assets"
+                label="合計保有資産"
                 placeholder="¥"
                 type="number"
                 value={currentMoneyInfo.total_assets}
@@ -52,7 +52,7 @@ const EditMoneyInfo: React.FC<Props> = (props) => {
             />
             <Input
                 name="deadline"
-                label="Target Achievement Date"
+                label="貯金達成目標日"
                 type="date"
                 value={currentMoneyInfo.deadline}
                 onChange={handleInputChange}

@@ -65,8 +65,13 @@ const BarChart: FC<Props> = (props) => {
             ],
     };
 
+    const options = {
+        responsive: true,
+        maintainAspectRatio: false,
+    }
+
     return (
-        <Bar data={data} width={800} height={500} />
+        <Bar data={data} height={500} options={options}/>
     );
 }
 

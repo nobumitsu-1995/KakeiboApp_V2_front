@@ -62,6 +62,7 @@ const List: React.FC<Props> = (props) => {
             <MUIList
                 className={classes.fixedList}
                 disablePadding={true}
+                dense
             >
                 {props.contents.map(content => {
                     return (

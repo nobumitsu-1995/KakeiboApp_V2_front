@@ -1,15 +1,14 @@
-import React from 'react';
 import './App.css';
 import Header from './components/organisms/Header';
 import Router from './Router';
 
-
-function App() {
-
+const App = () => {
   return (
     <div className="App">
       <Header/>
-      <Router/>
+      <div style={{marginTop: 80}}>
+        <Router/>
+      </div>
     </div>
   );
 }

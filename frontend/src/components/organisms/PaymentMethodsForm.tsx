@@ -48,45 +48,43 @@ const PaymentMethodsForm: React.FC<Props> = props => {
     }, [paymentMethodId])
 
     return (
-            <>
-                <form>
-                    <Grid container spacing={2}>
-                        <Grid item xs={3}>
-                            <SelectForm
-                                value={currentPaymentMethod.income}
-                                name="income"
-                                datas={[{value: true, name: "収入"}, {value: false, name: "支出"}]}
-                                label="Income or Expense"
-                                onChange={handleInputChange}
-                                disabled={null}
-                            />
-                        </Grid>
-                        <Grid item xs={9}>
-                            <Input
-                                name="name"
-                                label="Custum Payment Method"
-                                placeholder="Name"
-                                type="string"
-                                value={currentPaymentMethod.name}
-                                onChange={handleInputChange}
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <Button
-                                color="primary"
-                                variant="contained"
-                                size="medium"
-                                fullWidth={true}
-                                onClick={() => {
-                                    onClickFunc();
-                                }}
-                            >
-                                {props.formType === "create" ? "CREATE" : "UPDATE"}
-                            </Button>
-                        </Grid>
-                    </Grid>
-                </form>
-            </>
+        <form>
+            <Grid container spacing={2}>
+                <Grid item>
+                    <SelectForm
+                        value={currentPaymentMethod.income}
+                        name="income"
+                        datas={[{value: true, name: "収入"}, {value: false, name: "支出"}]}
+                        label="収支"
+                        onChange={handleInputChange}
+                        disabled={null}
+                    />
+                </Grid>
+                <Grid item xs={8}>
+                    <Input
+                        name="name"
+                        label="支払方法名"
+                        placeholder="Name"
+                        type="string"
+                        value={currentPaymentMethod.name}
+                        onChange={handleInputChange}
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <Button
+                        color="primary"
+                        variant="contained"
+                        size="medium"
+                        fullWidth={true}
+                        onClick={() => {
+                            onClickFunc();
+                        }}
+                    >
+                        {props.formType === "create" ? "CREATE" : "UPDATE"}
+                    </Button>
+                </Grid>
+            </Grid>
+        </form>
     );
 }
 

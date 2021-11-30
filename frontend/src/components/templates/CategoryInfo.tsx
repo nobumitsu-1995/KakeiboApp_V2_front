@@ -16,38 +16,49 @@ const CategoriesInfo = () => {
     return (
         <Card
             color="red"
-            title={"Categories"}
+            title={"収支カテゴリ"}
             action={<ItemMenu edit={() => dispatch(push('/user/edit'))} />}
         >
             <Dns/>
             <Switch>
                 <Route path="*/edit">
-                    <CategoriesForm formType='create'/>
-                    <List
-                        title="Custum Categories"
-                        contents={custumList}
-                        listType="category"
-
-                    />
+                    <div style={{marginBottom: 10}}>
+                        <CategoriesForm formType='create'/>
+                    </div>
+                    <div style={{marginTop: 10}}>
+                        <List
+                            title="カスタムカテゴリ"
+                            contents={custumList}
+                            listType="category"
+                        />
+                    </div>
                 </Route>
                 <Route path="*/category/:categoryId">
-                    <CategoriesForm formType='edit'/>
-                    <List
-                        title="Custum Categories"
-                        contents={custumList}
-                        listType="category"
-                    />
+                    <div style={{marginBottom: 10}}>
+                        <CategoriesForm formType='edit'/>
+                    </div>
+                    <div style={{marginTop: 10}}>
+                        <List
+                            title="カスタムカテゴリ"
+                            contents={custumList}
+                            listType="category"
+                        />
+                    </div>
                 </Route>
                 <Route path="*/">
-                    <List
-                        title="Default Categories"
-                        contents={defaultList}
-                    />
-                    <List
-                        title="Custum Categories"
-                        contents={custumList}
-                        listType="category"
-                    />
+                    <div style={{marginBottom: 10}}>
+                        <List
+                            title="デフォルトカテゴリ"
+                            contents={defaultList}
+                        />
+                    </div>
+                    <div style={{marginTop: 10}}>
+                        <List
+                            title="カスタムカテゴリ"
+                            contents={custumList}
+                            listType="category"
+                        />
+                    </div>             
                 </Route>
             </Switch>
         </Card>

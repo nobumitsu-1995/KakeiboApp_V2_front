@@ -36,21 +36,21 @@ const ShowMoneyInfo: React.FC<Props> = (props) => {
 
     return (
         <Typography>
-            <Grid container spacing={3} justifyContent="center">
-                <Grid item xs={5}>Target Savings Amount：</Grid>
-                <Grid item xs={7}>¥{props.target_amount}</Grid>
+            <Grid container spacing={2} justifyContent="space-between">
+                <Grid item>目標貯金額：</Grid>
+                <Grid item>¥{props.target_amount}</Grid>
             </Grid>
-            <Grid container spacing={3} justifyContent="center">
-                <Grid item xs={5}>Total Assets：</Grid>
-                <Grid item xs={7}>¥{props.total_assets}</Grid>
+            <Grid container spacing={2} justifyContent="space-between">
+                <Grid item>合計保有資産：</Grid>
+                <Grid item>¥{props.total_assets}</Grid>
             </Grid>
-            <Grid container spacing={3} justifyContent="center">
-                <Grid item xs={5}>Target Achievement Date：</Grid>
-                <Grid item xs={7}>{props.deadline}</Grid>
+            <Grid container spacing={2} justifyContent="space-between">
+                <Grid item>貯金達成目標日：</Grid>
+                <Grid item>{props.deadline}</Grid>
             </Grid>
             <MUICard className={classes.important} elevation={3}>
-                <p>Time Remaining：{Math.floor(timeLeft/365)}年{Math.round((timeLeft%365)/30)}ヶ月</p>
-                <p>Monthly Savings：¥{Math.round(monthlySavingsAmount)}</p>
+                <p>残り時間：{Math.floor(timeLeft/365)}年{Math.round((timeLeft%365)/30)}ヶ月</p>
+                <p>月必要貯金額：¥{Math.round(monthlySavingsAmount)}</p>
             </MUICard>
         </Typography>
     );

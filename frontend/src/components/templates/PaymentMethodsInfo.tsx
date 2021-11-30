@@ -16,42 +16,50 @@ const PaymentMEthodsInfo = () => {
     return (
         <Card
             color="gold"
-            title={"Payment Methods"}
+            title={"支払方法"}
             action={<ItemMenu edit={() => dispatch(push('/user/edit'))} />}
         >
             <MonetizationOn/>
             <Switch>
                 <Route path="*/edit">
-                    <PaymentMethodsForm 
-                        formType="create"
-                    />
-                    <List 
-                        title="Custum Payment Methods"
-                        contents={custumList}
-                        listType="payment_method"
-                    />
+                    <div style={{marginBottom: 10}}>
+                        <PaymentMethodsForm formType="create"/>
+                    </div>
+                    <div style={{marginTop: 10}}>
+                        <List 
+                            title="カスタム支払方法"
+                            contents={custumList}
+                            listType="payment_method"
+                        />
+                    </div>
                 </Route>
                 <Route path="*/payment_method/:paymentMethodId">
-                    <PaymentMethodsForm 
-                        formType="edit"
-                    />
-                    <List 
-                        title="Custum Payment Methods"
-                        contents={custumList}
-                        listType="payment_method"
-                    />
+                    <div style={{marginBottom: 10}}>
+                        <PaymentMethodsForm formType="edit"/>
+                    </div>
+                    <div style={{marginTop: 10}}>
+                        <List 
+                            title="カスタム支払方法"
+                            contents={custumList}
+                            listType="payment_method"
+                        />
+                    </div>
                 </Route>
                 <Route path="*">
-                    <List 
-                        title="Default Payment Methods"
-                        contents={defaultList}
-                        listType="payment_method"
-                    />
-                    <List 
-                        title="Custum Payment Methods"
-                        contents={custumList}
-                        listType="payment_method"
-                    />
+                    <div style={{marginBottom: 10}}>
+                        <List 
+                            title="デフォルト支払方法"
+                            contents={defaultList}
+                            listType="payment_method"
+                        />
+                    </div>
+                    <div style={{marginTop: 10}}>
+                        <List 
+                            title="カスタム支払方法"
+                            contents={custumList}
+                            listType="payment_method"
+                        />
+                    </div>
                 </Route>
             </Switch>
         </Card>

@@ -22,7 +22,13 @@ const Header: React.FC = () => {
         <AppBar position="fixed">
             <Toolbar className="header">
                 <Typography variant="h6" component="div">
-                    KakeiboApp
+                    <Button
+                        children="KakeiboApp"
+                        color="inherit"
+                        size="large"
+                        variant="text"
+                        onClick={() => dispatch(push('/'))}
+                    />
                 </Typography>
                 {!isAuthenticated ?
                     <Button
@@ -35,7 +41,7 @@ const Header: React.FC = () => {
                 :
                     <div className="flex">
                         <Button
-                            children="Personal finance"
+                            children="月別収支情報"
                             color="inherit"
                             size="large"
                             variant="text"

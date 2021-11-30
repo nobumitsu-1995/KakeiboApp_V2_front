@@ -26,11 +26,11 @@ const useStyles = makeStyles({
     },
     minus: {
         color: "blue",
-        fontSize: 20
+        fontSize: "1em"
     },
     plus: {
         color: "red",
-        fontSize: 20
+        fontSize: "1em"
     }
 })
 
@@ -76,15 +76,18 @@ const ItemsCalendar: FC<Props> = (props) => {
     }, [props.items])
 
         return (
-            <Calendar
-                className={classes.calendar}
-                tileClassName={classes.tile}
-                showNavigation={false}	
-                value={currentMonth}
-                showFixedNumberOfWeeks={true}
-                tileContent={tileContent}
-                activeStartDate={currentMonth}
-            />
+            <div style={{maxWidth: 800, margin: "0 auto"}}>
+                <Calendar
+                    className={classes.calendar}
+                    tileClassName={classes.tile}
+                    showNavigation={false}	
+                    value={currentMonth}
+                    showFixedNumberOfWeeks={true}
+                    tileContent={tileContent}
+                    activeStartDate={currentMonth}
+                />
+            </div>
+            
         )    
 }
 

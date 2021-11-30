@@ -48,45 +48,43 @@ const CategoriesForm: React.FC<Props> = props => {
     }, [categoryId])
 
     return (
-            <>
-                <form>
-                    <Grid container spacing={2}>
-                        <Grid item xs={3}>
-                            <SelectForm
-                                value={currentCategory.big_category}
-                                name="big_category"
-                                datas={[{value: "fixed_cost", name: "固定費"}, {value: "variable_cost", name: "変動費"}, {value: "income", name: "収入"}]}
-                                label="Major Category"
-                                onChange={handleInputChange}
-                                disabled={null}
-                            />
-                        </Grid>
-                        <Grid item xs={9}>
-                            <Input
-                                name="name"
-                                label="Custum Category"
-                                placeholder="Name"
-                                type="string"
-                                value={currentCategory.name}
-                                onChange={handleInputChange}
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <Button
-                                color="primary"
-                                variant="contained"
-                                size="medium"
-                                fullWidth={true}
-                                onClick={() => {
-                                    onClickFunc();
-                                }}
-                            >
-                                {props.formType === "create" ? "CREATE" : "UPDATE"}
-                            </Button>
-                        </Grid>
-                    </Grid>
-                </form>
-            </>
+        <form>
+            <Grid container spacing={2}>
+                <Grid item>
+                    <SelectForm
+                        value={currentCategory.big_category}
+                        name="big_category"
+                        datas={[{value: "fixed_cost", name: "固定費"}, {value: "variable_cost", name: "変動費"}, {value: "income", name: "収入"}]}
+                        label="大分類"
+                        onChange={handleInputChange}
+                        disabled={null}
+                    />
+                </Grid>
+                <Grid item xs={8}>
+                    <Input
+                        name="name"
+                        label="カテゴリ名"
+                        placeholder="Name"
+                        type="string"
+                        value={currentCategory.name}
+                        onChange={handleInputChange}
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <Button
+                        color="primary"
+                        variant="contained"
+                        size="medium"
+                        fullWidth={true}
+                        onClick={() => {
+                            onClickFunc();
+                        }}
+                    >
+                        {props.formType === "create" ? "CREATE" : "UPDATE"}
+                    </Button>
+                </Grid>
+            </Grid>
+        </form>
     );
 }
 

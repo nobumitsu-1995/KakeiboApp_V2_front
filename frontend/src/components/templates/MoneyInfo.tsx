@@ -17,7 +17,7 @@ const MoneyInfo =  () => {
     return (
         <Card
             color={"green"}
-            title={"Saving Target"}
+            title={"貯金目標"}
             action={<ItemMenu edit={() => dispatch(push('/user/edit'))} />}
         >
             <AccountBalanceWallet/>

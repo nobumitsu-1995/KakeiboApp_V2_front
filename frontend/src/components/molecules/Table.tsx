@@ -9,6 +9,7 @@ type Props = {
 export const StyledTableRow = withStyles((theme: Theme) =>
     createStyles({
         root: {
+            height: 30,
         "&:nth-of-type(odd)": {
             backgroundColor: theme.palette.action.hover
         }
@@ -23,14 +24,14 @@ export const StyledTableCell = withStyles((theme: Theme) =>
         color: theme.palette.common.white
         },
         body: {
-        fontSize: 14
+        fontSize: "0.8em"
         }
     })
 )(TableCell);
 
 const useStyles = makeStyles({
     table: {
-        minWidth: 1000
+        minWidth: 800
     },
     container: {
         maxHeight: 580,
