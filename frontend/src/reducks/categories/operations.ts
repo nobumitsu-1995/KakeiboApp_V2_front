@@ -1,4 +1,4 @@
-import axios from "axios"
+import client from "../axios"
 import { Dispatch, ReducersMapObject, StateFromReducersMapObject } from "redux"
 import { createCategoryAction, setCategoriesAction } from "./actions"
 import { categoryState } from "./type"
@@ -7,7 +7,7 @@ import { push as pushTo } from 'connected-react-router';
 
 export const getCategories = (user_id: string | undefined) => {
     return async (dispatch: Dispatch) => {
-        await axios.get(`http://localhost:80/${user_id}/categories`)
+        await client.get(`/${user_id}/categories`)
         .then(resp => {
             const default_list = resp.data.filter((category: categoryState) => !category.user_id);
             const custum_list = resp.data.filter((category: categoryState) => category.user_id);
@@ -27,7 +27,7 @@ export const getCategories = (user_id: string | undefined) => {
 
 export const createCategory = (user_id: string, category: categoryState) => {
     return async (dispatch: Dispatch, getState: () => StateFromReducersMapObject<ReducersMapObject<any, any>>) => {
-        await axios.post(`http://localhost:80/${user_id}/categories`, {
+        await client.post(`/${user_id}/categories`, {
             category: {
                 name: category.name,
                 big_category: category.big_category,
@@ -70,7 +70,7 @@ export const createCategory = (user_id: string, category: categoryState) => {
 
 export const deleteCategory = (user_id: string, category_id: number, big_category: string) => {
     return async (dispatch: Dispatch, getState: () => StateFromReducersMapObject<ReducersMapObject<any, any>>) => {
-        await axios.delete(`http://localhost:80/${user_id}/categories/${category_id}`)
+        await client.delete(`/${user_id}/categories/${category_id}`)
         .then(() => {
             const custum_list = getState().categories.custum_list.filter((category: categoryState) => category.id !== category_id)
             switch (big_category) {
@@ -100,7 +100,7 @@ export const deleteCategory = (user_id: string, category_id: number, big_categor
 
 export const updateCategory = (user_id: string, category: categoryState) => {
     return async (dispatch: Dispatch, getState: () => StateFromReducersMapObject<ReducersMapObject<any, any>>) => {
-        await axios.patch(`http://localhost:80/${user_id}/categories/${category.id}`, {
+        await client.patch(`/${user_id}/categories/${category.id}`, {
             category: {
                 name: category.name,
                 big_category: category.big_category,

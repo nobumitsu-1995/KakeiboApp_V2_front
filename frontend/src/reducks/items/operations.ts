@@ -1,4 +1,4 @@
-import axios from "axios";
+import client from "../axios";
 import { push } from "connected-react-router";
 import { Dispatch, ReducersMapObject, StateFromReducersMapObject } from "redux";
 import { calculateTotalAssets } from "../moneyInfos/operations";
@@ -24,7 +24,7 @@ export const itemsfilter = (items: itemState[], currentMonth: string) => {
 
 export const getItems = (user_id?: string) => {
     return async (dispatch: Dispatch) => {
-        await axios.get(`http://localhost:80/${user_id}/items`)
+        await client.get(`/${user_id}/items`)
         .then(resp => {
             dispatch(setItemsAction(resp.data));
         })
@@ -33,7 +33,7 @@ export const getItems = (user_id?: string) => {
 
 export const createItem = (user_id: string, item: itemState) => {
     return async (dispatch: any) => {
-        await axios.post(`http://localhost:80/${user_id}/items`, {
+        await client.post(`/${user_id}/items`, {
             item: {
                 date: item.date,
                 category_id: item.category_id,
@@ -58,7 +58,7 @@ export const createItem = (user_id: string, item: itemState) => {
 
 export const deleteItem = (user_id: string, item_id: number) => {
     return async (dispatch: Dispatch, getState: () => StateFromReducersMapObject<ReducersMapObject<any, any>>) => {
-        await axios.delete(`http://localhost:80/${user_id}/items/${item_id}`)
+        await client.delete(`/${user_id}/items/${item_id}`)
         .then(() => {
             const prevItems = getState().items;
             const nextItems = prevItems.filter((item: itemState) => item.id !== item_id);
@@ -71,7 +71,7 @@ export const deleteItem = (user_id: string, item_id: number) => {
 
 export const updateItem = (user_id: string, item: itemState) => {
     return async (dispatch: any, getState: () => StateFromReducersMapObject<ReducersMapObject<any, any>>) => {
-        await axios.patch(`http://localhost:80/${user_id}/items/${item.id}`, {
+        await client.patch(`/${user_id}/items/${item.id}`, {
             item: {
                 date: item.date,
                 category_id: item.category_id,

@@ -1,4 +1,4 @@
-import axios from "axios";
+import client from "../axios";
 import { Dispatch, ReducersMapObject, StateFromReducersMapObject } from "redux";
 import { createPaymentMethodAction, setPaymentMethodsAction } from "./actions";
 import { PaymentMethodState } from "./type";
@@ -10,7 +10,7 @@ export const translateIncome = (income: boolean) => {
 
 export const getPaymentMethods = (user_id: string | undefined) => {
     return async (dispatch: Dispatch) => {
-        await axios.get(`http://localhost:80/${user_id}/payment_methods`)
+        await client.get(`/${user_id}/payment_methods`)
         .then(resp => {
             const default_list = resp.data.filter((payment_method: PaymentMethodState) => !payment_method.user_id);
             const custum_list = resp.data.filter((payment_method: PaymentMethodState) => payment_method.user_id);
@@ -28,7 +28,7 @@ export const getPaymentMethods = (user_id: string | undefined) => {
 
 export const createPaymentMethod = (user_id: string, payment_method: PaymentMethodState) => {
     return async (dispatch: Dispatch, getState: () => StateFromReducersMapObject<ReducersMapObject<any, any>>) => {
-        await axios.post(`http://localhost:80/${user_id}/payment_methods`, {
+        await client.post(`/${user_id}/payment_methods`, {
             payment_method: {
                 name: payment_method.name,
                 income: payment_method.income,
@@ -60,7 +60,7 @@ export const createPaymentMethod = (user_id: string, payment_method: PaymentMeth
 
 export const deletePaymentMethod = (user_id: string, payment_method_id: number, income: boolean) => {
     return async (dispatch: Dispatch, getState: () => StateFromReducersMapObject<ReducersMapObject<any, any>>) => {
-        await axios.delete(`http://localhost:80/${user_id}/payment_methods/${payment_method_id}`)
+        await client.delete(`/${user_id}/payment_methods/${payment_method_id}`)
         .then(() => {
             const custum_list = getState().categories.custum_list.filter((payment_method: PaymentMethodState) => payment_method.id !== payment_method_id)
             if (income) {
@@ -83,7 +83,7 @@ export const deletePaymentMethod = (user_id: string, payment_method_id: number, 
 
 export const updatePaymentMethod = (user_id: string, payment_method: PaymentMethodState) => {
     return async (dispatch: Dispatch, getState: () => StateFromReducersMapObject<ReducersMapObject<any, any>>) => {
-        await axios.patch(`http://localhost:80/${user_id}/payment_methods/${payment_method.id}`, {
+        await client.patch(`/${user_id}/payment_methods/${payment_method.id}`, {
             payment_method: {
                 name: payment_method.name,
                 income: payment_method.income,
