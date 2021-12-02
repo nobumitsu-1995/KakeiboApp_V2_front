@@ -12,6 +12,7 @@ const User = () => {
             spacing={2} 
             justifyContent="center"
             alignItems="flex-start"
+            style={{marginTop: 50}}
         >
             <Grid item>
                 <UserInfo/>

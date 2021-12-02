@@ -6,7 +6,7 @@ const App = () => {
   return (
     <div className="App">
       <Header/>
-      <div style={{marginTop: 80}}>
+      <div style={{marginTop: 64}}>
         <Router/>
       </div>
     </div>
