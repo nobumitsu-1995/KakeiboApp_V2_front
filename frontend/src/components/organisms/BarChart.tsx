@@ -33,8 +33,8 @@ const BarChart: FC<Props> = (props) => {
     useEffect(() => {
         const initialIncomeY = Array(endOfMonth).fill(0);
         const initialConsumptionY = Array(endOfMonth).fill(0);
-        setIncomeY(initialIncomeY)
-        setConsumptionY(initialConsumptionY)
+        setIncomeY(initialIncomeY);
+        setConsumptionY(initialConsumptionY);
         items.forEach((item: itemState) => {
             const date = new Date(item.date);
             const day = date.getDate();
@@ -46,7 +46,7 @@ const BarChart: FC<Props> = (props) => {
                 setConsumptionY(initialConsumptionY)
             }
             
-        })
+        });
     }, [x, items, endOfMonth])    
 
     const data = {

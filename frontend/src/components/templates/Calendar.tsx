@@ -70,10 +70,11 @@ const ItemsCalendar: FC<Props> = (props) => {
             }
             return result
         },[{date: "", price: 0}])
-
         groupBy.shift()
         setCalendarDatas(groupBy)
     }, [props.items])
+
+    console.log(calendarDatas)
 
         return (
             <div style={{maxWidth: 800, margin: "0 auto"}}>

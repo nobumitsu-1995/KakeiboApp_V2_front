@@ -11,6 +11,7 @@ import ShowItem from "../organisms/ShowItem";
 
 type Props = {
     items: itemState[];
+    currentMonth: string;
 }
 
 const IndexItems: React.FC<Props> = (props) => {

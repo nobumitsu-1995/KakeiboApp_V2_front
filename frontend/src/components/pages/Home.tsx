@@ -1,10 +1,12 @@
-import { Card, Avatar, CardContent, CardHeader, CardMedia, Typography, TextField } from "@material-ui/core";
+import { Card, Avatar, CardContent, CardHeader, CardMedia, Typography, TextField, IconButton, Link } from "@material-ui/core";
+import { useAuth0 } from "@auth0/auth0-react";
 import Logo from "../../image/logo.png"
 import FooterLogo from "../../image/logo_transparent.png"
 import Happy from "../../image/happy.png"
+import GitHubIcon from '@mui/icons-material/GitHub';
 import { Button, Input } from "../atoms"
 const Home = () => {
-
+    const { loginWithRedirect } = useAuth0();
     return (
         <>
             <section className="wrapper">
@@ -16,8 +18,9 @@ const Home = () => {
                     <Button
                         children="会員登録してはじめる"
                         color="secondary"
-                        size="large"
+                        size="medium"
                         variant="contained"
+                        onClick={loginWithRedirect}
                     />
                 </div>
             </section>
@@ -196,19 +199,21 @@ const Home = () => {
                         </CardContent>
                     </Card>
                 </div>
-                <div className="how-to-close pt-is-small">
-                    <div className="point_box">
-                        <h3>貯金目標を達成しましょう！</h3>
+                <div className="pt-is-small">
+                    <div className="how-to-close ">
+                        <div className="point_box">
+                            <h3>貯金目標を達成しましょう！</h3>
+                        </div>
+                        <img src={Happy} alt="happy" />
+                        <Button
+                            children="会員登録してはじめる"
+                            color="secondary"
+                            size="medium"
+                            variant="contained"
+                            onClick={loginWithRedirect}
+                        />
                     </div>
-                    <img src={Happy} alt="happy" />
-                    <Button
-                        children="会員登録してはじめる"
-                        color="secondary"
-                        size="medium"
-                        variant="contained"
-                    />
                 </div>
-                
             </section>
             <section className="form pat">
                 <h1>お問い合わせ</h1>
@@ -251,11 +256,21 @@ const Home = () => {
                             color="secondary"
                             size="small"
                             variant="contained"
+                            onClick={loginWithRedirect}
                         />
+                        <button className="footer-btn">会員登録してはじめる</button>
                     </div>
                 </div>
                 <div className="footer">
-                    
+                    <div>
+                        <Link href="https://github.com/nobumitsu-1995" target="_blank">
+                            <IconButton aria-label="delete" size="medium" >
+                                <GitHubIcon fontSize="inherit" />
+                            </IconButton>
+                        </Link>
+                        <p>使用技術について</p>
+                    </div>
+                    <p>Copyright © 2021 nobumitsu masugata</p>
                 </div>
             </footer>
         </>

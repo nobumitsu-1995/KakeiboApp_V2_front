@@ -13,6 +13,7 @@ import IndexItems from "../templates/IndexItems";
 import { itemState } from "../../reducks/items/type";
 import { Modal } from "../molecules";
 import ItemForm from "../organisms/ItemForm";
+import LineChart from "../organisms/LineChart";
 
 const useStyles = makeStyles({
     subject: {
@@ -80,6 +81,9 @@ const Items = () => {
                 <ItemForm formType="create" item={initialState.items}/>
             </Modal>
             <div style={{maxWidth: 1200, margin: "0 auto"}}>
+                <LineChart items={items} currentMonth={currentMonth} budget={200000} />
+            </div>
+            <div style={{maxWidth: 1200, margin: "0 auto"}}>
                 <TabContext value={value}>
                     <AppBar position="static" color="inherit">
                         <TabList onChange={handleChange} aria-label="simple tabs example">
@@ -90,7 +94,7 @@ const Items = () => {
                     </AppBar>
                     <Paper square>
                         <TabPanel value="index">
-                            <IndexItems items={items} />
+                            <IndexItems items={items} currentMonth={currentMonth} />
                         </TabPanel>
                         <TabPanel value="calender">
                             <ItemsCalendar items={items} currentMonth={currentMonth}/>
