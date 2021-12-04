@@ -1,3 +1,5 @@
+import { Grid } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
 import React, { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import { itemState } from '../../reducks/items/type';
@@ -8,10 +10,24 @@ type Props = {
     budget: number;
 }
 
+const useStyles = makeStyles({
+    info: {
+        backgroundColor: "rgb(75,192,192)",
+        width: "60vw",
+        minWidth: 300,
+        margin: "10px auto",
+        borderRadius: 10,
+        border: "4px solid #5BC0A3",
+        color: "white" ,
+        fontWeight: "bold"
+    }
+})
+
 const LineChart: React.FC<Props> = (props) => {
-    const [endOfMonth, setEndOfMonth] = useState<number>(0) 
+    const [endOfMonth, setEndOfMonth] = useState(0) 
     const [x, setX] = useState([""])
-    const [incomeData, setIncomeData] = useState([0]);
+    const [consumptionData, setconsumptionData] = useState([0]);
+    const [incomeData, setIncomeData] = useState(0);
     const [amountY, setAmountY] = useState([0]);
 
     useEffect(() => {
@@ -26,33 +42,43 @@ const LineChart: React.FC<Props> = (props) => {
 
     useEffect(() => {
         const initialAmountY = Array(endOfMonth).fill(0);
-        setIncomeData(initialAmountY);
-        
+        setconsumptionData(initialAmountY);
         props.items.forEach(item => {
-            const date = new Date(item.date);
-            const day = date.getDate();
-            initialAmountY[day-1] += (item.category.big_category === "income" ? item.price : -item.price)
-            setIncomeData(initialAmountY)
+            if (item.category.big_category !== "income") {
+                const date = new Date(item.date);
+                const day = date.getDate();
+                initialAmountY[day-1] -= item.price
+                setconsumptionData(initialAmountY)
+            }
         });
-    }, [endOfMonth, props.items])  
+    }, [endOfMonth, props.items])
 
     useEffect(() => {
-        const arr = incomeData.reduce((result, current) => {
+        const initialPrice = 0;
+        const price = props.items.reduce((result, current) => {
+            if (current.category.big_category === "income") {
+                return result + current.price;
+            }
+            return result;
+        }, initialPrice)
+        setIncomeData(price);
+    }, [endOfMonth, props.items])
+
+    useEffect(() => {
+        const arr = consumptionData.reduce((result, current) => {
             const price = result[result.length - 1] + current
             result.push(price)
             return result
         }, [props.budget])
         arr.shift();
         setAmountY(arr);
-    }, [incomeData])
+    }, [consumptionData])
 
-
-    
     const data = {
         labels: x,
         datasets: [
             {
-                label: '今月残り予算',
+                label: '今月残り予算推移',
                 fill: false,
                 lineTension: 0.1,
                 backgroundColor: 'rgba(75,192,192,0.4)',
@@ -67,20 +93,29 @@ const LineChart: React.FC<Props> = (props) => {
                 pointHoverBorderColor: 'rgba(220,220,220,1)',
                 pointHoverBorderWidth: 2,
                 pointRadius: 1,
-                pointHitRadius: 10,
+                pointHitRadius: 30,
                 data: amountY,
             },
         ],
     };
-    
+
+    const difference = amountY[amountY.length-1] - props.budget
+    const saving = incomeData + difference
+    const classes = useStyles();
+
     return (
         <>
             <Line data={data} height={80}/>
-            <div>
-                <p>残高：　{amountY[amountY.length-1]}円</p>
-                <p>月予算残高：　{amountY[amountY.length-1] - props.budget}円</p>
+            <div className={classes.info}>
+                <Grid container justifyContent="center">
+                    <Grid item style={{margin: "8px 12px"}}>予算残高：　{amountY[amountY.length-1]}円</Grid>
+                    <Grid item style={{margin: "8px 12px"}}>月使用金額：　▲{-difference}円</Grid>
+                </Grid>
+                <Grid container justifyContent="center">
+                    <Grid item style={{margin: "8px 12px"}}>月収入　：　{incomeData}円</Grid>
+                    <Grid item style={{margin: "8px 12px"}}>月貯金額：　{saving < 0 ? `▲${-saving}` : saving}円</Grid>
+                </Grid>
             </div>
-            
         </>
     );
 }

@@ -80,9 +80,9 @@ const Items = () => {
                 </IconButton>
                 <ItemForm formType="create" item={initialState.items}/>
             </Modal>
-            <div style={{maxWidth: 1200, margin: "0 auto"}}>
+            <Paper style={{maxWidth: 1200, margin: "10px auto", padding: "20px 0px"}}>
                 <LineChart items={items} currentMonth={currentMonth} budget={200000} />
-            </div>
+            </Paper>
             <div style={{maxWidth: 1200, margin: "0 auto"}}>
                 <TabContext value={value}>
                     <AppBar position="static" color="inherit">
