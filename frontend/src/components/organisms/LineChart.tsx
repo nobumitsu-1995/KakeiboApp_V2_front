@@ -29,6 +29,7 @@ const LineChart: React.FC<Props> = (props) => {
     const [consumptionData, setconsumptionData] = useState([0]);
     const [incomeData, setIncomeData] = useState(0);
     const [amountY, setAmountY] = useState([0]);
+    console.log(props.budget)
 
     useEffect(() => {
         const day = new Date(props.currentMonth)

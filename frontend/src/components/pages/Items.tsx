@@ -14,6 +14,7 @@ import { itemState } from "../../reducks/items/type";
 import { Modal } from "../molecules";
 import ItemForm from "../organisms/ItemForm";
 import LineChart from "../organisms/LineChart";
+import { getMonthlyBudget } from "../../reducks/moneyInfos/selectors";
 
 const useStyles = makeStyles({
     subject: {
@@ -45,6 +46,7 @@ const Items = () => {
     const [items, setItems] = useState<itemState[]>([initialState.items])
     const selector = useSelector(state => state);
     const allItems = getItemsState(selector);
+    const monthly_budget = getMonthlyBudget(selector);
     
     useEffect(() => {
         setItems(itemsfilter(allItems, currentMonth))
@@ -81,7 +83,7 @@ const Items = () => {
                 <ItemForm formType="create" item={initialState.items}/>
             </Modal>
             <Paper style={{maxWidth: 1200, margin: "10px auto", padding: "20px 0px"}}>
-                <LineChart items={items} currentMonth={currentMonth} budget={200000} />
+                <LineChart items={items} currentMonth={currentMonth} budget={monthly_budget} />
             </Paper>
             <div style={{maxWidth: 1200, margin: "0 auto"}}>
                 <TabContext value={value}>

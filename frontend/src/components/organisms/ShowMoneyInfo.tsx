@@ -51,7 +51,7 @@ const ShowMoneyInfo: React.FC<Props> = (props) => {
             </Grid>
             <Grid container spacing={2} justifyContent="space-between">
                 <Grid item>月予算：</Grid>
-                <Grid item>{props.monthly_budget}</Grid>
+                <Grid item>¥{props.monthly_budget}</Grid>
             </Grid>
             <MUICard className={classes.important} elevation={3}>
                 <p>残り時間：{Math.floor(timeLeft/365)}年{Math.round((timeLeft%365)/30)}ヶ月</p>
