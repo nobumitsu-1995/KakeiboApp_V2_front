@@ -9,6 +9,7 @@ type Props = {
     total_assets: number;
     target_amount: number;
     deadline: string;
+    monthly_budget: number;
 }
 
 const EditMoneyInfo: React.FC<Props> = (props) => {
@@ -27,6 +28,7 @@ const EditMoneyInfo: React.FC<Props> = (props) => {
             total_assets: props.total_assets,
             target_amount: props.target_amount,
             deadline: props.deadline,
+            monthly_budget: props.monthly_budget,
             user_id: uid
         }
         setCurrentMoneyInfo(prevMoneyInfo);
@@ -55,6 +57,13 @@ const EditMoneyInfo: React.FC<Props> = (props) => {
                 label="貯金達成目標日"
                 type="date"
                 value={currentMoneyInfo.deadline}
+                onChange={handleInputChange}
+            />
+            <Input
+                name="monthly_budget"
+                label="月予算"
+                type="number"
+                value={currentMoneyInfo.monthly_budget}
                 onChange={handleInputChange}
             />
             <Button

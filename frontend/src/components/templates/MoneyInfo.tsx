@@ -2,7 +2,7 @@ import { AccountBalanceWallet } from "@mui/icons-material";
 import { push } from "connected-react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router";
-import { getDeadline, getTargetAmount, getTotalAssets } from "../../reducks/moneyInfos/selectors";
+import { getDeadline, getMonthlyBudget, getTargetAmount, getTotalAssets } from "../../reducks/moneyInfos/selectors";
 import {Card, ItemMenu} from "../molecules";
 import EditMoneyInfo from "../organisms/EditMoneyInfo";
 import ShowMoneyInfo from "../organisms/ShowMoneyInfo";
@@ -13,6 +13,7 @@ const MoneyInfo =  () => {
     const total_assets = getTotalAssets(selector);
     const target_amount = getTargetAmount(selector);
     const deadline = getDeadline(selector);
+    const monthly_budget = getMonthlyBudget(selector)
 
     return (
         <Card
@@ -27,6 +28,7 @@ const MoneyInfo =  () => {
                         total_assets={total_assets}
                         target_amount={target_amount}
                         deadline={deadline}
+                        monthly_budget={monthly_budget}
                     />
                 </Route>
                 <Route path="*/">
@@ -34,6 +36,7 @@ const MoneyInfo =  () => {
                         total_assets={total_assets}
                         target_amount={target_amount}
                         deadline={deadline}
+                        monthly_budget={monthly_budget}
                     />
                 </Route>
             </Switch>

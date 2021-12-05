@@ -16,6 +16,16 @@ export const translateBigCategory = (bigCategory: string) => {
     }
 }
 
+export const isValidRequiredInput = (items: itemState[]) => {
+    let validator = true;
+    items.forEach((item => {
+        if (!(item.name && item.category_id && item.date && item.name && item.payment_method_id && item.price)) {
+            validator = false;
+        }
+    }));
+    return validator
+};
+
 export const itemsfilter = (items: itemState[], currentMonth: string) => {
     const date = new Date(currentMonth);
     const result = items.filter(item => new Date(item.date).getMonth() === date.getMonth());
@@ -97,5 +107,38 @@ export const updateItem = (user_id: string, item: itemState) => {
         .catch(e => {
             alert("必要事項を入力してください");
         });
+    }
+}
+
+export const createItems = (user_id: string, items: itemState[]) => {
+    return (dispatch: any) => {
+        if (!isValidRequiredInput(items)) {
+            console.log("false")
+            alert("必須項目(分類、収支内容、値段、収支発生日、支払方法)を全て入力してください。")
+            return false;
+        }
+        
+        items.forEach(async (item, index) => {
+            await client.post(`/${user_id}/items`, {
+                item: {
+                    date: item.date,
+                    category_id: item.category_id,
+                    name: item.name,
+                    price: item.price,
+                    payment_method_id: item.payment_method_id,
+                    note: item.note,
+                    user_id: user_id
+                }
+            })
+            .then((resp) => {
+                dispatch(createItemAction([resp.data]));
+            })
+        })
+        const sum = items.reduce((result, current) => {
+            const price = current.category.big_category !== "income" ? -current.price : current.price;
+            return result + price;
+        }, 0);
+        dispatch(calculateTotalAssets(user_id, sum))
+        dispatch(push('/items'));
     }
 }

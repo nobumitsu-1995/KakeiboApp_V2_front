@@ -16,3 +16,8 @@ export const getDeadline = createSelector(
     [moneyInfoSelector],
     state => state.deadline
 );
+
+export const getMonthlyBudget = createSelector(
+    [moneyInfoSelector],
+    state => state.monthly_budget
+)

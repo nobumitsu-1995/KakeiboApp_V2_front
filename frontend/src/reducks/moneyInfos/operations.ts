@@ -4,7 +4,6 @@ import { Dispatch, ReducersMapObject, StateFromReducersMapObject } from "redux"
 import { createMoneyInfoAction, setMoneyInfoAction, updateMoneyInfoAction } from "./actions"
 import { moneyInfoState } from "./type"
 
-
 export const getMoneyInfo = (user_id?: string) => {
     return async (dispatch: any) => {
         await client.get(`/${user_id}/money_info`)
@@ -25,7 +24,8 @@ export const updateMoneyInfo = (user_id: string, money_info: moneyInfoState) => 
             money_info: {
                 total_assets: money_info.total_assets,
                 target_amount: money_info.target_amount,
-                deadline: money_info.deadline
+                deadline: money_info.deadline,
+                monthly_budget: money_info.monthly_budget
             }    
         })
         .then(resp => {
@@ -45,6 +45,7 @@ export const createMoneyInfo = (user_id?: string) => {
                 total_assets: 100000,
                 target_amount: 1000000,
                 deadline: deadline,
+                monthly_budget: 200000,
                 user_id: user_id
             }   
         })

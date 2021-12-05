@@ -105,7 +105,7 @@ const LineChart: React.FC<Props> = (props) => {
 
     return (
         <>
-            <Line data={data} height={80}/>
+            <Line data={data} height={window.outerWidth < 426 ? 200 : 80}/>
             <div className={classes.info}>
                 <Grid container justifyContent="center">
                     <Grid item style={{margin: "8px 12px"}}>予算残高：　{amountY[amountY.length-1]}円</Grid>

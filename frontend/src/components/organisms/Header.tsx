@@ -47,6 +47,13 @@ const Header: React.FC = () => {
                             variant="text"
                             onClick={() => dispatch(push('/items'))}
                         />
+                        <Button
+                            children="収支一括登録"
+                            color="inherit"
+                            size="large"
+                            variant="text"
+                            onClick={() => dispatch(push('/items/new'))}
+                        />
                         <HeaderUserMenu/>
                     </div>
                     

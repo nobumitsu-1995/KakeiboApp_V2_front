@@ -25,6 +25,7 @@ export const initialState = {
         target_amount: 0,
         deadline: "",
         user_id: "",
+        monthly_budget: 0,
     },
     categories: {
         fixed_costs: [initialCategoryState],
