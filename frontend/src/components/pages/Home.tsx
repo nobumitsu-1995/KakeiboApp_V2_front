@@ -5,8 +5,11 @@ import FooterLogo from "../../image/logo_transparent.png"
 import Happy from "../../image/happy.png"
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { Button, Input } from "../atoms"
+import { useDispatch } from "react-redux";
+import { push } from "connected-react-router";
 const Home = () => {
     const { loginWithRedirect } = useAuth0();
+    const dispatch = useDispatch();
     return (
         <>
             <section className="wrapper">
@@ -268,7 +271,7 @@ const Home = () => {
                                 <GitHubIcon fontSize="inherit" />
                             </IconButton>
                         </Link>
-                        <p>使用技術について</p>
+                        <p onClick={() => dispatch(push('/tech_info'))}>使用技術について</p>
                     </div>
                     <p>Copyright © 2021 nobumitsu masugata</p>
                 </div>

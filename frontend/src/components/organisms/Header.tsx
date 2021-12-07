@@ -27,7 +27,7 @@ const Header: React.FC = () => {
                         color="inherit"
                         size="large"
                         variant="text"
-                        onClick={() => dispatch(push('/'))}
+                        onClick={() => dispatch(push(!isAuthenticated ? '/' : '/tech_info'))}
                     />
                 </Typography>
                 {!isAuthenticated ?

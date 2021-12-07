@@ -15,6 +15,7 @@ import { Modal } from "../molecules";
 import ItemForm from "../organisms/ItemForm";
 import LineChart from "../organisms/LineChart";
 import { getMonthlyBudget } from "../../reducks/moneyInfos/selectors";
+import { useLocation } from "react-router";
 
 const useStyles = makeStyles({
     subject: {
@@ -46,11 +47,12 @@ const Items = () => {
     const [items, setItems] = useState<itemState[]>([initialState.items])
     const selector = useSelector(state => state);
     const allItems = getItemsState(selector);
+    const location = useLocation();
     const monthly_budget = getMonthlyBudget(selector);
     
     useEffect(() => {
         setItems(itemsfilter(allItems, currentMonth))
-    }, [allItems, currentMonth])
+    }, [allItems, currentMonth, location])
     
     const prevMonth = () => {
         const date = new Date(currentMonth)
