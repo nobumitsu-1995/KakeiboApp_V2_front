@@ -163,13 +163,17 @@ body {
   align-content: center;
   justify-content: space-around;
   text-align: left;
-  position: relative;
+  
   max-width: 1600px;
   margin: 0 auto;
   margin-bottom: 25px;
 }
 
-.cards:before {
+.arrow {
+  position: relative;
+}
+
+.arrow:before {
   content: "";
   position: absolute;
   bottom: -30px;
@@ -178,7 +182,7 @@ body {
   border-color: #e8b094;
 }
 
-.cards:after {
+.arrow:after {
   content: "";
   position: absolute;
   bottom: -50px;
@@ -549,7 +553,6 @@ body {
   margin-bottom: 60px;
 }
 
-/* for Desktop */
 @media ( min-width : 640px ){
   .timeline > li {
     overflow: hidden;

@@ -1,5 +1,11 @@
-import Infra from "../../image/infra.png"
-import ER from "../../image/ER.png"
+import Infra from "../../image/infra.png";
+import ER from "../../image/ER.png";
+import Todo from "../../image/todo_top.png";
+import BulletinBoard from "../../image/bulletinboard_top.png";
+import RPC from "../../image/rakutenpricechecker_top.png";
+import ProtoMaster from "../../image/protomaster_top.png";
+import { Card, Avatar, CardContent, CardHeader, CardMedia, Typography, Link, CardActions } from "@material-ui/core";
+import { Button } from "../atoms";
 
 const Tech = () => {
     
@@ -67,10 +73,10 @@ const Tech = () => {
                         <h4>0.2.1 自分自身で使いたいと思えるアプリケーションを作成する。</h4>
                         <p>
                             　WEBエンジニアとして働くに当たって、Webに関する技術を磨くことは当然のことですが
-                            それ以前に、世の中の役に立つ、意味のあるサービスを提供するということが根幹にあると考えています。
+                            それ以前に、世の中の役に立つ、意味のあるサービスを提供しなければならないということが根幹にあると考えています。<br />
                             　そこで、まずは「意味のあるサービス」の中でもハードルが低そうな「自分自身が抱えてる問題を解決する
-                            アプリケーション」を作成しようと考えました。
-                            　家計簿として日々の収支情報をまとめつつ、自分の目標に沿って貯金を手助けしてくれるような
+                            アプリケーション」を作成しようと考え、家計簿として日々の収支情報をまとめつつ、自分の目標に沿って貯金を手助けしてくれるような
+                            アプリケーションを開発しようと決めました。
                         </p>
                         <h4>0.2.2 完全独学でのデプロイを目指す。</h4>
                         <p>
@@ -88,7 +94,12 @@ const Tech = () => {
                         </p>
                         <h4>0.2.3 実務の現場で実際に使用されている技術を使用する。</h4>
                         <p>
-                            　
+                            　完全未経験での転職活動には技術力を照明するためのポートフォリオを作成することは必須ですが
+                            「使用する技術の選定」も重要になってくると考えました。<br />
+                            　モダンで実務でも広く扱われている技術を学習することで転職活動をする際に選択肢が広がる上に、転職後も
+                            よりスムーズに実務に入れると思ったからです。加えて、0.2.2でも少し説明した通り、日々の自己研鑽を続け、
+                            最新の技術を学び取り入れていく姿勢こそ、エンジニアにとって一番重要な要素だと考えているので時間をかけてでも
+                            モダンな技術を取り入れることは必要だと自分の中で結論づけました。
                         </p>
                         
                     </div>
@@ -96,7 +107,13 @@ const Tech = () => {
                 <div>
                     <h3>0.3 使用技術について</h3>
                     <div>
-                        <p></p>
+                        <p>　使用技術に関しましてはリストでまとめた通りとなります。</p>
+                        <ul>
+                            <li>フロントエンド：React + TypeScript + Redux</li>
+                            <li>バックエンド：Ruby on Rails API</li>
+                            <li>インフラ：AWS(S3 + ECS + ECR), Docker/docker-compose</li>
+                        </ul>
+                        <p>　次の章から、それぞれの使用技術に関しましてより詳しく説明したいと思います。</p>
                     </div>
                 </div>
             </section>
@@ -105,24 +122,98 @@ const Tech = () => {
                     <h2>1. アプリケーションの設計開発について</h2>
                 </div>
                 <div>
-                    <h3>1.1 バックエンドの開発について</h3>
+                    <h3>1.1 フロントエンドの開発について</h3>
                     <div>
-                        <p></p>
-                        <img src={ER} alt="er" />
+                        <p>
+                            　フロントエンドの実装にはReact + TypeScript + Reduxを使用しました。
+                            使用したライブラリは主に以下の通りとなります。
+                        </p>
+                        <ul>
+                            <h3>UI実装周り</h3>
+                            <li>material-ui：　UIデザイン関連のコンポーネントを提供しているライブラリ。UIデザイン周りの実装で非常に役立ちました。</li>
+                            <li>react-chartjs-2：　円グラフや棒グラフ、折れ線グラフといったチャートを簡単に作成できるライブラリ。収支情報のまとめをグラフ化するために用いました。</li>
+                            <li>react-calendar：　カレンダーを簡単に作成することができるライブラリ。</li>
+
+                            <h3>Redux周り</h3>
+                            <li>redux：　stateを一元管理するためのライブラリ。開発の進行に伴って、所謂propsのバケツリレーが起きてしまいデータの管理の複雑性が増してしまったため導入しました。</li>
+                            <li>redux-thunk：　Reduxで非同期処理を行えるようにするためのミドルウェア。</li>
+                            <li>reselect：　stateの中から任意のパラメータを受け取るためのライブラリ。</li>
+
+                            <h3>Router周り</h3>
+                            <li>connected-react-router：　Reduxのstoreでrouterの情報を管理できるようにするライブラリ。historyの管理や画面遷移の実装のため使用しました。</li>
+                            <li>axios：　ブラウザからHTTPリクエストを送信するためのライブラリ。フロントエンド側とAPI側で通信を行うために使用しました。</li>
+                            <li>react-router： URLとコンポーネントを紐付け、SPA(シングルページアプリケーション)としてページの更新を行うライブラリ。</li>
+                        </ul>
+                        <p>
+                            　アプリ開発当初はフロントエンドとバックエンドで明確に分けることはせずERB、Bootstrap、JQueryを使用して
+                            全てRails内で完結させていました。しかし、現状多くのプロジェクトではフロントエンドとバックエンドで分けて開発が
+                            行われているため、RailsはAPIモードを使用し、フロントエンドは別にJS系のライブラリで実装することと
+                            しました。<br />
+                            　使用するライブラリに関しては、「Vue.js」「Angular」「React」などの選択肢がありましたが、転職サイトなどで
+                            見る限り採用数がもっとも多そうな印象を受けた「React」を使用することとしました。
+                        </p>
                     </div>
                 </div>
                 <div>
-                    <h3>1.2 フロントエンドの開発について</h3>
+                    <h3>1.2 バックエンドの開発について</h3>
                     <div>
-                        <p></p>
-                        
+                        <p>
+                            　バックエンドの実装にはRuby on RailsのAPIモードを使用しました。
+                            使用したGemに関しては主に以下の通りとなります。
+                        </p>
+                        <ul>
+                            <li>Rspec：　</li>
+                            <li>Factory Bot：　</li>
+                            <li>rack-cors：　</li>
+                            <li>puma：　</li>
+                        </ul>
+                        <p>
+                            　データベース設計に関しましては以下のER図の通りとなります。
+                            また、ユーザー情報に関しては、Auth0を使用することでRails内では管理しないようにしました。
+                        </p>
+                        <div style={{textAlign: "center"}}>
+                            <img src={ER} alt="er" style={{width: "90%", maxWidth: "1000px"}}/>
+                        </div>
                     </div>
                 </div>
                 <div>
                     <h3>1.3 インフラ構成について</h3>
                     <div>
-                        <p></p>
-                        <img src={Infra} alt="infra" />
+                        <h4>1.3.1 本番環境</h4>
+                        <p>
+                            　本番環境のデプロイはAWSを用いました。使用したサービスは以下の通りとなります。
+                        </p>
+                        <ul>
+                            <li>Route53</li>
+                            <li>ACM</li>
+                            <li>ALB</li>
+                            <li>S3</li>
+                            <li>ECS</li>
+                            <li>ECR</li>
+                            <li>RDS</li>
+                        </ul>
+                        <div style={{textAlign: "center"}}>
+                            <img src={Infra} alt="infra" style={{width: "90%", maxWidth: "1000px"}} />
+                        </div>
+                        <h4>1.3.2 開発環境</h4>
+                        <p>
+                            　上記の通り、本番環境のデプロイはECSの使用を考えていたので、環境による差異を小さくする目的も兼ねて開発環境は
+                            Docker/docker-composeを利用しコンテナ化しました。サービスの構成については以下の通りとなります。
+                        </p>
+                        <ul>
+                            <li>db: postgreSQL</li>
+                            <li>api: Ruby on Rails</li>
+                            <li>front: React</li>
+                            <li>web: NGINX</li>
+                        </ul>
+                        <p>
+                            　開発環境に関しては、雛形を作成し
+                            <Link href="https://github.com/nobumitsu-1995/rails-nginx-react-docker" target="_blank">
+                                Github
+                            </Link>
+                            にあげているので是非ご覧ください。
+                        </p>
+                        
                     </div>
                 </div>
             </section>
@@ -133,13 +224,131 @@ const Tech = () => {
                 <div>
                     <h3>2.1 今後の実装機能、改善点について</h3>
                     <div>
-                        <p></p>
+                        <p>
+                            　
+                            固定収支の登録を可能とする、デザイン力の強化、CIの導入、検索機能の追加
+                        </p>
                     </div>
                 </div>
                 <div>
                     <h3>2.2 その他の開発アプリについて</h3>
-                    <div>
-                        <p></p>
+                    <div className="cards">
+                        <Card className="card" style={{maxWidth: 270}} >
+                            <CardHeader
+                                avatar={
+                                <Avatar aria-label="recipe" style={{backgroundColor: "#F50057"}}>
+                                    1
+                                </Avatar>
+                                }
+                                title="TODOアプリ"
+                            />
+                            <CardMedia
+                                component="img"
+                                height="194"
+                                image={Todo}
+                                alt="how-to-use1"
+                            />
+                            <CardContent>
+                                <Typography variant="body2" color="textSecondary">
+                                Ruby on Railsを学習した後に初めて1から作成したアプリです。Todoの追加、確認、編集、削除、完了等の操作ができる基本的なCRUDアプリになります。
+                                </Typography>
+                            </CardContent>
+                            <CardActions>
+                                <Link href="https://github.com/nobumitsu-1995/TODOAPP/tree/master/TODOAPP" target="_blank">
+                                    <Button color="inherit" size="small" variant="text">Github</Button>
+                                </Link>
+                                <Link href="https://todo-created-by-masu.herokuapp.com" target="_blank">
+                                    <Button color="inherit" size="small" variant="text">Apprication</Button>
+                                </Link>
+                            </CardActions>
+                        </Card>
+                        <Card className="card" style={{maxWidth: 270}}>
+                            <CardHeader
+                                avatar={
+                                <Avatar aria-label="recipe" style={{backgroundColor: "#F50057"}}>
+                                    2
+                                </Avatar>
+                                }
+                                title="掲示板アプリ"
+                            />
+                            <CardMedia
+                                component="img"
+                                height="194"
+                                image={BulletinBoard}
+                                alt="how-to-use1"
+                            />
+                            <CardContent>
+                                <Typography variant="body2" color="textSecondary">
+                                APIを利用したログイン機能やAJAX処理、N＋１問題の解決方法といったより実践的な技術について学ぶために作成をした掲示板アプリです。ログインをして掲示板に投稿、削除ができ、チャットすることができます。
+                                </Typography>
+                            </CardContent>
+                            <CardActions>
+                                <Link href="https://github.com/nobumitsu-1995/bulletin_board" target="_blank">
+                                    <Button color="inherit" size="small" variant="text">Github</Button>
+                                </Link>
+                                <Link href="https://ajax-bulletin-board.herokuapp.com" target="_blank">
+                                    <Button color="inherit" size="small" variant="text">Apprication</Button>
+                                </Link>
+                            </CardActions>
+                        </Card>
+                        <Card className="card" style={{maxWidth: 270}}>
+                            <CardHeader
+                                avatar={
+                                <Avatar aria-label="recipe" style={{backgroundColor: "#F50057"}}>
+                                    3
+                                </Avatar>
+                                }
+                                title="楽天 PRICE CHECKER"
+                            />
+                            <CardMedia
+                                component="img"
+                                height="194"
+                                image={RPC}
+                                alt="how-to-use1"
+                            />
+                            <CardContent>
+                                <Typography variant="body2" color="textSecondary">
+                                    APIを利用したアプリケーションの開発を学ぶために作成したアプリです。楽天市場に出品されている商品を検索することができ、商品情報を保存することで価格の推移を自動でグラフ化することができます。
+                                </Typography>
+                            </CardContent>
+                            <CardActions>
+                                <Link href="https://github.com/nobumitsu-1995/RakutenPriceChecker" target="_blank">
+                                    <Button color="inherit" size="small" variant="text">Github</Button>
+                                </Link>
+                                <Link href="https://rakutenpricechecker.herokuapp.com" target="_blank">
+                                    <Button color="inherit" size="small" variant="text">Apprication</Button>
+                                </Link>
+                            </CardActions>
+                        </Card>
+                        <Card className="card" style={{maxWidth: 270}}>
+                            <CardHeader
+                                avatar={
+                                <Avatar aria-label="recipe" style={{backgroundColor: "#F50057"}}>
+                                    4
+                                </Avatar>
+                                }
+                                title="試作品情報管理アプリ"
+                            />
+                            <CardMedia
+                                component="img"
+                                height="194"
+                                image={ProtoMaster}
+                                alt="how-to-use1"
+                            />
+                            <CardContent>
+                                <Typography variant="body2" color="textSecondary">
+                                    前職在職中に作成したアプリです。試作品の設計業務上で「試作品のデータを保存、管理することができない」「使用した顔料や半製品のデータを検索できないため適切な材料を調べるのに時間がかかる」といった問題があったので、これを解決するために作成しました。
+                                </Typography>
+                            </CardContent>
+                            <CardActions>
+                                <Link href="https://github.com/nobumitsu-1995/protomaster/tree/master/protomaster" target="_blank">
+                                    <Button color="inherit" size="small" variant="text">Github</Button>
+                                </Link>
+                                <Link href="https://protomaster.herokuapp.com" target="_blank">
+                                    <Button color="inherit" size="small" variant="text">Apprication</Button>
+                                </Link>
+                            </CardActions>
+                        </Card>
                     </div>
                 </div>
             </section>

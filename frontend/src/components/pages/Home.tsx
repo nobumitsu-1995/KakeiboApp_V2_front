@@ -116,7 +116,7 @@ const Home = () => {
             </section>
             <section className="how-to-use">
                 <h1>SUM APPの使い方</h1>
-                <div className="cards">
+                <div className="cards arrow">
                     <Card className="card">
                         <CardHeader
                             avatar={
