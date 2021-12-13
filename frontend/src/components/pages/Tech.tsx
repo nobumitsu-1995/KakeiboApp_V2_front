@@ -162,10 +162,8 @@ const Tech = () => {
                             使用したGemに関しては主に以下の通りとなります。
                         </p>
                         <ul>
-                            <li>Rspec：　</li>
-                            <li>Factory Bot：　</li>
-                            <li>rack-cors：　</li>
-                            <li>puma：　</li>
+                            <li>Rspec：　Railsの代表的なテストツールの一つ。単体テスト、統合テストを実行するために使用しました。</li>
+                            <li>Factory Bot：　テストのサンプルデータを簡単に作成することができるgem。</li>
                         </ul>
                         <p>
                             　データベース設計に関しましては以下のER図の通りとなります。
@@ -184,13 +182,13 @@ const Tech = () => {
                             　本番環境のデプロイはAWSを用いました。使用したサービスは以下の通りとなります。
                         </p>
                         <ul>
-                            <li>Route53</li>
-                            <li>ACM</li>
-                            <li>ALB</li>
-                            <li>S3</li>
-                            <li>ECS</li>
-                            <li>ECR</li>
-                            <li>RDS</li>
+                            <li>Route53：　サイトを独自ドメインと紐づけるために使用しました。</li>
+                            <li>ACM：　サイトの通信スキームをHTTPS化するために使用しました。</li>
+                            <li>ALB：　通信の負荷分散を行うロードバランサー。</li>
+                            <li>S3：　フロントエンド側のホスティングのために使用。</li>
+                            <li>ECS(Fargate)：　コンテナ向けのサーバーレスコンピューティングサービス。RailsとNGINXをデプロイするために使用しました。</li>
+                            <li>ECR：　RailsとNGINXのDockerイメージを保存するためのレジストリとして使用しました。</li>
+                            <li>RDS：　クラウド上でリレーショナルデータベースを使用するサービス。PostgreSQLを使用しました。</li>
                         </ul>
                         <div style={{textAlign: "center"}}>
                             <img src={Infra} alt="infra" style={{width: "90%", maxWidth: "1000px"}} />
@@ -213,7 +211,6 @@ const Tech = () => {
                             </Link>
                             にあげているので是非ご覧ください。
                         </p>
-                        
                     </div>
                 </div>
             </section>
@@ -225,9 +222,31 @@ const Tech = () => {
                     <h3>2.1 今後の実装機能、改善点について</h3>
                     <div>
                         <p>
-                            　
-                            固定収支の登録を可能とする、デザイン力の強化、CIの導入、検索機能の追加
+                            　本アプリケーションは基本的な機能はすでに使用できますが、まだ不完全で改善点が多々残っております。
+                            今後のアップデートで以下の点を改善していきたいと考えています。
                         </p>
+                        <ul style={{listStyle: "number"}}>
+                            <li>固定収支情報を登録することで毎月の固定収支を自動で登録できるようにする。</li>
+                            <li>検索機能を追加し、収支情報を検索できるようにする。</li>
+                            <li>デザインの一新</li>
+                            <li>CI/CDサービスの導入</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>2.1.1 固定収支情報を登録することで毎月の固定収支を自動で登録できるようにする。</h4>
+                        <p></p>
+                    </div>
+                    <div>
+                        <h4>2.1.2 検索機能を追加し、収支情報を検索できるようにする。</h4>
+                        <p></p>
+                    </div>
+                    <div>
+                        <h4>2.1.3 デザインの一新</h4>
+                        <p></p>
+                    </div>
+                    <div>
+                        <h4>2.1.4 CI/CDサービスの導入</h4>
+                        <p></p>
                     </div>
                 </div>
                 <div>
@@ -286,7 +305,7 @@ const Tech = () => {
                                 <Link href="https://github.com/nobumitsu-1995/bulletin_board" target="_blank">
                                     <Button color="inherit" size="small" variant="text">Github</Button>
                                 </Link>
-                                <Link href="https://ajax-bulletin-board.herokuapp.com" target="_blank">
+                                <Link href="https://ajaxbulletinboard.herokuapp.com/" target="_blank">
                                     <Button color="inherit" size="small" variant="text">Apprication</Button>
                                 </Link>
                             </CardActions>
