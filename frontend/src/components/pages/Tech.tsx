@@ -337,35 +337,6 @@ const Tech = () => {
                                 </Link>
                             </CardActions>
                         </Card>
-                        <Card className="card" style={{maxWidth: 270}}>
-                            <CardHeader
-                                avatar={
-                                <Avatar aria-label="recipe" style={{backgroundColor: "#F50057"}}>
-                                    4
-                                </Avatar>
-                                }
-                                title="試作品情報管理アプリ"
-                            />
-                            <CardMedia
-                                component="img"
-                                height="194"
-                                image={ProtoMaster}
-                                alt="how-to-use1"
-                            />
-                            <CardContent>
-                                <Typography variant="body2" color="textSecondary">
-                                    前職在職中に作成したアプリです。試作品の設計業務上で「試作品のデータを保存、管理することができない」「使用した顔料や半製品のデータを検索できないため適切な材料を調べるのに時間がかかる」といった問題があったので、これを解決するために作成しました。
-                                </Typography>
-                            </CardContent>
-                            <CardActions>
-                                <Link href="https://github.com/nobumitsu-1995/protomaster" target="_blank">
-                                    <Button color="inherit" size="small" variant="text">Github</Button>
-                                </Link>
-                                <Link href="https://protomaster.herokuapp.com" target="_blank">
-                                    <Button color="inherit" size="small" variant="text">Apprication</Button>
-                                </Link>
-                            </CardActions>
-                        </Card>
                     </div>
                 </div>
             </section>
