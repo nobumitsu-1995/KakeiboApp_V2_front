@@ -449,12 +449,6 @@ body {
   display: none;
 }
 
-@media screen and (max-width: 1520px) {
-  　　.point  {
-    width: 124px;
-  }
-}
-
 @media screen and (max-width: 1370px) {
   .cards {
     max-width: 1000px;
