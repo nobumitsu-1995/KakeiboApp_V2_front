@@ -271,10 +271,10 @@ const Tech = () => {
                                 </Typography>
                             </CardContent>
                             <CardActions>
-                                <Link href="https://github.com/nobumitsu-1995/TODOAPP/tree/master/TODOAPP" target="_blank">
+                                <Link href="https://github.com/nobumitsu-1995/TodoApp_v2" target="_blank">
                                     <Button color="inherit" size="small" variant="text">Github</Button>
                                 </Link>
-                                <Link href="https://todo-created-by-masu.herokuapp.com" target="_blank">
+                                <Link href="https://todo-deadline-management-app.herokuapp.com/" target="_blank">
                                     <Button color="inherit" size="small" variant="text">Apprication</Button>
                                 </Link>
                             </CardActions>
@@ -300,7 +300,7 @@ const Tech = () => {
                                 </Typography>
                             </CardContent>
                             <CardActions>
-                                <Link href="https://github.com/nobumitsu-1995/bulletin_board" target="_blank">
+                                <Link href="https://github.com/nobumitsu-1995/BulletinBoard_v2" target="_blank">
                                     <Button color="inherit" size="small" variant="text">Github</Button>
                                 </Link>
                                 <Link href="https://ajaxbulletinboard.herokuapp.com/" target="_blank">
@@ -329,10 +329,10 @@ const Tech = () => {
                                 </Typography>
                             </CardContent>
                             <CardActions>
-                                <Link href="https://github.com/nobumitsu-1995/RakutenPriceChecker" target="_blank">
+                                <Link href="https://github.com/nobumitsu-1995/RakutenPriceChecker_v2" target="_blank">
                                     <Button color="inherit" size="small" variant="text">Github</Button>
                                 </Link>
-                                <Link href="https://rakutenpricechecker.herokuapp.com" target="_blank">
+                                <Link href="https://rakutenpricechecker.herokuapp.com/" target="_blank">
                                     <Button color="inherit" size="small" variant="text">Apprication</Button>
                                 </Link>
                             </CardActions>
@@ -358,7 +358,7 @@ const Tech = () => {
                                 </Typography>
                             </CardContent>
                             <CardActions>
-                                <Link href="https://github.com/nobumitsu-1995/protomaster/tree/master/protomaster" target="_blank">
+                                <Link href="https://github.com/nobumitsu-1995/protomaster" target="_blank">
                                     <Button color="inherit" size="small" variant="text">Github</Button>
                                 </Link>
                                 <Link href="https://protomaster.herokuapp.com" target="_blank">
