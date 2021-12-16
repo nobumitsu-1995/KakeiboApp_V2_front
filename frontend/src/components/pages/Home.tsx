@@ -7,9 +7,41 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import { Button, Input } from "../atoms"
 import { useDispatch } from "react-redux";
 import { push } from "connected-react-router";
+import { useState } from "react";
+import axios from "axios";
 const Home = () => {
     const { loginWithRedirect } = useAuth0();
     const dispatch = useDispatch();
+    const [formContent, setFormContent] = useState({name: "", email: "", body: ""});
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const {name, value} = event.target;
+        setFormContent({...formContent, [name]: value});
+    }
+    const sendMail = () => {
+        if (!formContent.email) {
+            return alert("メールアドレスを入力してください。")
+        }
+        if (!formContent.email.match(/.+@.+\..+/)) {
+            return alert('メールアドレスをご確認ください'); 
+        }
+        if (!formContent.name) {
+            return alert("名前を入力してください。")
+        }
+        if (!formContent.body) {
+            return alert("お問い合わせ内容を入力してください。")
+        }
+        axios.post("https://3ub19eizz6.execute-api.ap-northeast-1.amazonaws.com/v1/send", formContent)
+        .then(res => {
+            alert(
+                `${formContent.name}様
+                お問い合わせありがとうございます。
+                ${formContent.email}まで返信しますのでお待ちください。`
+            )
+        })
+        .catch(e => {
+            alert("送信に失敗しました。時間を置いてからもう一度お試しください。")
+        })
+    }
     return (
         <>
             <section className="wrapper">
@@ -225,20 +257,23 @@ const Home = () => {
                         name="email"
                         label="メールアドレス"
                         type="string"
+                        onChange={handleInputChange}
                     />
                     <Input
                         name="name"
                         label="名前"
                         type="string"
+                        onChange={handleInputChange}
                     />
                     <TextField
-                        name="note"
+                        name="body"
                         label="お問い合わせ内容"
                         multiline
                         rows={8}
                         variant="outlined"
                         fullWidth
                         style={{margin: "20px 0px"}}
+                        onChange={handleInputChange}
                     />
                     <Button
                         children="送信"
@@ -246,6 +281,7 @@ const Home = () => {
                         size="small"
                         variant="contained"
                         fullWidth
+                        onClick={() => sendMail()}
                     />
                 </form>
             </section>

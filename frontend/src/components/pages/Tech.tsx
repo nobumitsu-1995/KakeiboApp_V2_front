@@ -3,7 +3,6 @@ import ER from "../../image/ER.png";
 import Todo from "../../image/todo_top.png";
 import BulletinBoard from "../../image/bulletinboard_top.png";
 import RPC from "../../image/rakutenpricechecker_top.png";
-import ProtoMaster from "../../image/protomaster_top.png";
 import { Card, Avatar, CardContent, CardHeader, CardMedia, Typography, Link, CardActions } from "@material-ui/core";
 import { Button } from "../atoms";
 
