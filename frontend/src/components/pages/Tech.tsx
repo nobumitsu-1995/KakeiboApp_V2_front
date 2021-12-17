@@ -3,7 +3,7 @@ import ER from "../../image/ER.png";
 import Todo from "../../image/todo_top.png";
 import BulletinBoard from "../../image/bulletinboard_top.png";
 import RPC from "../../image/rakutenpricechecker_top.png";
-import { Card, Avatar, CardContent, CardHeader, CardMedia, Typography, Link, CardActions } from "@material-ui/core";
+import { Card, Avatar, CardContent, CardHeader, CardMedia, Typography, Link, CardActions, Divider } from "@material-ui/core";
 import { Button } from "../atoms";
 
 const Tech = () => {
@@ -248,7 +248,7 @@ const Tech = () => {
                 </div>
                 <div>
                     <h3>2.2 その他の開発アプリについて</h3>
-                    <div className="cards">
+                    <div className="cards" style={{alignItems: "flex-start"}}>
                         <Card className="card" style={{maxWidth: 270}} >
                             <CardHeader
                                 avatar={
@@ -269,6 +269,15 @@ const Tech = () => {
                                 Ruby on Railsを学習した後に初めて1から作成したアプリです。Todoの追加、確認、編集、削除、完了等の操作ができる基本的なCRUDアプリになります。
                                 </Typography>
                             </CardContent>
+                            <Divider light />
+                            <CardContent>
+                                <Typography variant="body2" color="textSecondary">
+                                    以下の情報でログイン可能です。<br />
+                                    ・メールアドレス：hoge<br />
+                                    ・パスワード：hoge
+                                </Typography>
+                            </CardContent>
+                            <Divider light />
                             <CardActions>
                                 <Link href="https://github.com/nobumitsu-1995/TodoApp_v2" target="_blank">
                                     <Button color="inherit" size="small" variant="text">Github</Button>
@@ -298,6 +307,15 @@ const Tech = () => {
                                 APIを利用したログイン機能やAJAX処理、N＋１問題の解決方法といったより実践的な技術について学ぶために作成をした掲示板アプリです。ログインをして掲示板に投稿、削除ができ、チャットすることができます。
                                 </Typography>
                             </CardContent>
+                            <Divider light />
+                            <CardContent>
+                                <Typography variant="body2" color="textSecondary">
+                                    以下の情報でログイン可能です。<br />
+                                    ・メールアドレス：test.user.for.portfolio@gmail.com<br />
+                                    ・パスワード：Testuser2021
+                                </Typography>
+                            </CardContent>
+                            <Divider light />
                             <CardActions>
                                 <Link href="https://github.com/nobumitsu-1995/BulletinBoard_v2" target="_blank">
                                     <Button color="inherit" size="small" variant="text">Github</Button>
@@ -327,6 +345,15 @@ const Tech = () => {
                                     APIを利用したアプリケーションの開発を学ぶために作成したアプリです。楽天市場に出品されている商品を検索することができ、商品情報を保存することで価格の推移を自動でグラフ化することができます。
                                 </Typography>
                             </CardContent>
+                            <Divider light />
+                            <CardContent>
+                                <Typography variant="body2" color="textSecondary">
+                                    以下の情報でログイン可能です。<br />
+                                    ・メールアドレス：test.user.for.portfolio@gmail.com<br />
+                                    ・パスワード：Testuser2021
+                                </Typography>
+                            </CardContent>
+                            <Divider light />
                             <CardActions>
                                 <Link href="https://github.com/nobumitsu-1995/RakutenPriceChecker_v2" target="_blank">
                                     <Button color="inherit" size="small" variant="text">Github</Button>
