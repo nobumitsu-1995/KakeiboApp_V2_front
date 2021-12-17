@@ -23,11 +23,18 @@ const Header: React.FC = () => {
             <Toolbar className="header">
                 <Typography variant="h6" component="div">
                     <Button
-                        children="KakeiboApp"
+                        children="SUM APP"
                         color="inherit"
                         size="large"
                         variant="text"
-                        onClick={() => dispatch(push(!isAuthenticated ? '/' : '/tech_info'))}
+                        onClick={() => dispatch(push(!isAuthenticated ? '/' : '/items'))}
+                    />
+                    <Button
+                        children="使用技術について"
+                        color="inherit"
+                        size="large"
+                        variant="text"
+                        onClick={() => dispatch(push('/tech_info'))}
                     />
                 </Typography>
                 {!isAuthenticated ?

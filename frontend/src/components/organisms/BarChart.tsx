@@ -71,7 +71,7 @@ const BarChart: FC<Props> = (props) => {
     }
 
     return (
-        <Bar data={data} height={500} options={options}/>
+        <Bar data={data} height={450} options={options}/>
     );
 }
 

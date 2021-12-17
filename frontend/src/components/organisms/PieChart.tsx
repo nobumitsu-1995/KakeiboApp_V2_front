@@ -79,7 +79,7 @@ const PieChart: FC<Props> = (props) => {
     };
 
     return (
-        <Pie width={300} data={data}/>
+        <Pie width={250} data={data}/>
     );
 }
 

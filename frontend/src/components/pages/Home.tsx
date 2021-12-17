@@ -1,10 +1,20 @@
 import { Card, Avatar, CardContent, CardHeader, CardMedia, Typography, TextField, IconButton, Link } from "@material-ui/core";
 import { useAuth0 } from "@auth0/auth0-react";
-import Logo from "../../image/logo.png"
-import FooterLogo from "../../image/logo_transparent.png"
-import Happy from "../../image/happy.png"
+import Logo from "../../image/logo.png";
+import FooterLogo from "../../image/logo_transparent.png";
+import Happy from "../../image/happy.png";
+import Overview1 from "../../image/overview1.jpg";
+import Overview2 from "../../image/overview2.jpg"
+import Point1 from "../../image/point1.jpg"
+import Point2 from "../../image/point2.jpg"
+import Point3 from "../../image/point3.jpg"
+import Point4 from "../../image/point4.jpg"
+import HowToUse1 from "../../image/how_to_use1.jpg";
+import HowToUse2 from "../../image/how_to_use2.jpg";
+import HowToUse3 from "../../image/how_to_use3.jpg";
+import HowToUse4 from "../../image/how_to_use4.jpg";
 import GitHubIcon from '@mui/icons-material/GitHub';
-import { Button, Input } from "../atoms"
+import { Button, Input } from "../atoms";
 import { useDispatch } from "react-redux";
 import { push } from "connected-react-router";
 import { useState } from "react";
@@ -64,15 +74,16 @@ const Home = () => {
                 <div className="content">
                     <div>
                         <h4>SUM APPは<br />
-                            <span>・　現在の貯金額　</span><br />
                             <span>・　目標貯金額　</span><br />
-                            <span>・　貯金目標達成日　</span><br />
-                            の３つを登録するだけですぐに使えます。
+                            <span>・　合計保有資産　</span><br />
+                            <span>・　貯金達成目標日　</span><br />
+                            <span>・　月予算　</span><br />
+                            の４つを登録するだけですぐに使えます。
                         </h4>
-                        <p>この３つを登録しなくても家計簿として使用できます。</p>
+                        <p>この４つを登録しなくても家計簿として使用できます。</p>
                     </div>
-                    <div>
-                        <img src={Logo} alt="overview1" />
+                    <div className="img_container">
+                        <img src={HowToUse1} alt="overview1" />
                     </div>
                 </div>
                 <div className="content">
@@ -83,8 +94,8 @@ const Home = () => {
                             後は自動で総貯金額、月々の必要貯金額、月予算の残高等を計算します。
                         </p>
                     </div>
-                    <div>
-                        <img src={Logo} alt="overview2" />
+                    <div className="img_container">
+                        <img src={Overview2} alt="overview2" />
                     </div>
                 </div>
             </section>
@@ -99,8 +110,8 @@ const Home = () => {
                             浪費を抑えることができます。
                         </p>
                     </div>
-                    <div>
-                        <img src={Logo} alt="point1" />
+                    <div className="img_container">
+                        <img src={Point1} alt="point1" />
                     </div>
                 </div>
                 <div className="content">
@@ -112,8 +123,8 @@ const Home = () => {
                             使いすぎてしまった日を一目で確認できます。
                         </p>
                     </div>
-                    <div>
-                        <img src={Logo} alt="point2" />
+                    <div className="img_container">
+                        <img src={Point2} alt="point2" />
                     </div>
                 </div>
                 <div className="content">
@@ -126,8 +137,8 @@ const Home = () => {
                             節約できそうな所を見つけ出し、効率よく貯金を進めましょう。
                         </p>
                     </div>
-                    <div>
-                        <img src={Logo} alt="point3" />
+                    <div className="img_container">
+                        <img src={Point3} alt="point3" />
                     </div>
                 </div>
                 <div className="content">
@@ -141,8 +152,8 @@ const Home = () => {
                             自分の浪費パターンをさらに詳しく見てみましょう。
                         </p>
                     </div>
-                    <div>
-                        <img src={Logo} alt="point4" />
+                    <div className="img_container">
+                        <img src={Point4} alt="point4" />
                     </div>
                 </div>
             </section>
@@ -161,12 +172,12 @@ const Home = () => {
                         <CardMedia
                             component="img"
                             height="194"
-                            image={Logo}
+                            image={HowToUse1}
                             alt="how-to-use1"
                         />
                         <CardContent>
                             <Typography variant="body2" color="textSecondary">
-                                メールアドレスとパスワードでサインアップした後「目標貯金額」「合計保有資産」「貯金達成目標日」を登録します。
+                                メールアドレスとパスワードでサインアップした後「目標貯金額」「合計保有資産」「貯金達成目標日」「月予算」を登録します。
                             </Typography>
                         </CardContent>
                     </Card>
@@ -182,7 +193,7 @@ const Home = () => {
                         <CardMedia
                             component="img"
                             height="194"
-                            image={Logo}
+                            image={HowToUse2}
                             alt="how-to-use2"
                         />
                         <CardContent>
@@ -203,7 +214,7 @@ const Home = () => {
                         <CardMedia
                             component="img"
                             height="194"
-                            image={Logo}
+                            image={HowToUse3}
                             alt="how-to-use3"
                         />
                         <CardContent>
@@ -224,7 +235,7 @@ const Home = () => {
                         <CardMedia
                             component="img"
                             height="194"
-                            image={Logo}
+                            image={HowToUse4}
                             alt="how-to-use4"
                         />
                         <CardContent>
