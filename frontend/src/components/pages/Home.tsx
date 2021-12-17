@@ -3,7 +3,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Logo from "../../image/logo.png";
 import FooterLogo from "../../image/logo_transparent.png";
 import Happy from "../../image/happy.png";
-import Overview1 from "../../image/overview1.jpg";
 import Overview2 from "../../image/overview2.jpg"
 import Point1 from "../../image/point1.jpg"
 import Point2 from "../../image/point2.jpg"
